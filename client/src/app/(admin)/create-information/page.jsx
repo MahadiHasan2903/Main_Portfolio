@@ -1,5 +1,5 @@
 import React from "react";
-import CreateInfo from "../../../lib/components/About/CreateInfo";
+import CreateInfo from "../../../lib/components/Admin/Information/CreateInfo";
 
 const CreateInformation = () => {
   return (

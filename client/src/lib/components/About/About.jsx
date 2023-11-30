@@ -3,7 +3,7 @@ import DevImg from "../Hero/DevImg";
 import Image from "next/image";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import { GraduationCap, Briefcase } from "lucide-react";
-import { infoData, qualificationData, skillData } from "../../data";
+import { infoData, qualificationData, skillData } from "../../util/data";
 import { Card, CardDescription, CardTitle } from "../../components/ui/card";
 
 const About = () => {

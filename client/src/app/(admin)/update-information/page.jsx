@@ -1,7 +1,7 @@
 import React from "react";
-import UpdateInfo from "../../../lib/components/About/UpdateInfo";
+import UpdateInfo from "../../../lib/components/Admin/Information/UpdateInfo";
 
-const UpdateInformation = () => {
+const UpdateInformationPage = () => {
   return (
     <div className="flex justify-center">
       <UpdateInfo />
@@ -9,4 +9,4 @@ const UpdateInformation = () => {
   );
 };
 
-export default UpdateInformation;
+export default UpdateInformationPage;

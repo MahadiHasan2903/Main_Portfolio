@@ -1,7 +1,12 @@
 import React from "react";
+import AllSkills from "../../../lib/components/Admin/Skill/AllSkills";
 
-const AllSkills = () => {
-  return <div>AllSkills</div>;
+const AllSkillsPage = () => {
+  return (
+    <div className="flex justify-center">
+      <AllSkills />
+    </div>
+  );
 };
 
-export default AllSkills;
+export default AllSkillsPage;

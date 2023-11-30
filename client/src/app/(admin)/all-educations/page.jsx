@@ -1,7 +1,12 @@
 import React from "react";
+import AllEducation from "../../../lib/components/Admin/Education/AllEducatuion";
 
-const AllEducations = () => {
-  return <div>AllEducations</div>;
+const AllEducationsPage = () => {
+  return (
+    <div className="flex justify-center">
+      <AllEducation />
+    </div>
+  );
 };
 
-export default AllEducations;
+export default AllEducationsPage;

@@ -1,7 +1,12 @@
 import React from "react";
+import CreateProject from "../../../lib/components/Admin/Projects/CreateProject";
 
-const CreateProject = () => {
-  return <div>CreateProject</div>;
+const CreateProjectPage = () => {
+  return (
+    <div className="flex justify-center ">
+      <CreateProject />
+    </div>
+  );
 };
 
-export default CreateProject;
+export default CreateProjectPage;

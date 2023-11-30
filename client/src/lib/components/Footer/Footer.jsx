@@ -3,7 +3,7 @@ import Socials from "../Hero/Socials";
 
 const Footer = () => {
   return (
-    <footer className="py-12 bg-secondary">
+    <footer className="py-12 bg-secondary ">
       <div className="container mx-auto">
         <div className="flex flex-col items-center justify-between">
           <Socials

@@ -8,14 +8,14 @@ import {
   FolderPlus,
   FolderOpenDot,
   PenLine,
-  Paperclip,
+  ListPlus,
   Scroll,
   PenSquare,
-  AlignRight,
   ListFilter,
   Library,
   PackagePlus,
   LayoutDashboard,
+  Component,
 } from "lucide-react";
 
 export const reviewsData = [
@@ -69,6 +69,7 @@ export const reviewsData = [
 
 export const projectData = [
   {
+    id: 1,
     name: "Website 3",
     technologies: "Nextjs, MERN",
     category: "Full Stack",
@@ -77,6 +78,7 @@ export const projectData = [
     preview: "/",
   },
   {
+    id: 2,
     name: "Mobile App",
     technologies: "React Native, Firebase",
     category: "Mobile Development",
@@ -86,6 +88,7 @@ export const projectData = [
     preview: "/",
   },
   {
+    id: 3,
     name: "Website 3",
     technologies: "Nextjs, MERN",
     category: "Full Stack",
@@ -96,6 +99,7 @@ export const projectData = [
   },
 
   {
+    id: 4,
     name: "E-commerce Platform",
     technologies: "Shopify, Liquid",
     category: "E-commerce",
@@ -105,6 +109,7 @@ export const projectData = [
     preview: "/",
   },
   {
+    id: 5,
     name: "Website 3",
     technologies: "Nextjs, MERN",
     category: "Full Stack",
@@ -113,6 +118,7 @@ export const projectData = [
     preview: "/",
   },
   {
+    id: 6,
     name: "Mobile App",
     technologies: "React Native, Firebase",
     category: "Mobile Development",
@@ -121,6 +127,7 @@ export const projectData = [
     preview: "/",
   },
   {
+    id: 7,
     name: "Website 3",
     technologies: "Nextjs, MERN",
     category: "Full Stack",
@@ -129,6 +136,7 @@ export const projectData = [
     preview: "/",
   },
   {
+    id: 8,
     name: "Website 3",
     technologies: "Nextjs, MERN",
     category: "Full Stack",
@@ -137,6 +145,7 @@ export const projectData = [
     preview: "/",
   },
   {
+    id: 9,
     name: "Mobile App",
     technologies: "React Native, Firebase",
     category: "Mobile Development",
@@ -146,10 +155,50 @@ export const projectData = [
     preview: "/",
   },
   {
+    id: 10,
     name: "Website 3",
     technologies: "Nextjs, MERN",
     category: "Full Stack",
     image: "/work/3.png",
+    github: "/",
+    preview: "/",
+  },
+  {
+    id: 11,
+    name: "Website 3",
+    technologies: "Nextjs, MERN",
+    category: "Full Stack",
+    image: "/work/3.png",
+
+    github: "/",
+    preview: "/",
+  },
+
+  {
+    id: 12,
+    name: "E-commerce Platform",
+    technologies: "Shopify, Liquid",
+    category: "E-commerce",
+    image: "/work/4.png",
+
+    github: "/",
+    preview: "/",
+  },
+  {
+    id: 13,
+    name: "Website 3",
+    technologies: "Nextjs, MERN",
+    category: "Full Stack",
+    image: "/work/1.png",
+    github: "/",
+    preview: "/",
+  },
+  {
+    id: 14,
+    name: "Mobile App",
+    technologies: "React Native, Firebase",
+    category: "Mobile Development",
+    image: "/work/2.png",
     github: "/",
     preview: "/",
   },
@@ -187,17 +236,20 @@ export const qualificationData = [
     title: "education",
     data: [
       {
+        id: 1,
         institution:
           "International University of Business, Agriculture and Technology",
         degree: "Bachelor of Science",
         session: "2020-2023",
       },
       {
+        id: 2,
         institution: "Government Science College, Tejgaon",
         degree: "HSC",
         session: "2017-2018",
       },
       {
+        id: 3,
         institution: "Adarsha Biddya Niketon, Manikdi",
         degree: "SSC",
         session: "2015-2016",
@@ -208,6 +260,7 @@ export const qualificationData = [
     title: "experience",
     data: [
       {
+        id: 1,
         organization: "Cloudly Infotech Limited",
         designation: "Software Engineer",
         years: "October 2023 - Present",
@@ -221,78 +274,96 @@ export const skillData = [
     title: "skills",
     data: [
       {
+        id: 1,
         name: "Html",
         imgPath: "/skill/html.svg",
       },
 
       {
+        id: 2,
         name: "CSS",
         imgPath: "/skill/css.svg",
       },
       {
+        id: 3,
         name: "Bootstrap",
         imgPath: "/skill/bootstrap.svg",
       },
       {
+        id: 4,
         name: "jQuery",
         imgPath: "/skill/jquery.svg",
       },
       {
+        id: 5,
         name: "SASS",
         imgPath: "/skill/sass.svg",
       },
       {
+        id: 6,
         name: "TailwindCSS",
         imgPath: "/skill/tailwindcss.svg",
       },
       {
+        id: 7,
         name: "Material UI",
         imgPath: "/skill/materialui.svg",
       },
 
       {
+        id: 8,
         name: "JavaScript",
         imgPath: "/skill/javascript.svg",
       },
       {
+        id: 9,
         name: "TypeScript",
         imgPath: "/skill/typescript.svg",
       },
       {
+        id: 10,
         name: "React.js",
         imgPath: "/skill/react.svg",
       },
       {
+        id: 11,
         name: "Next.js",
         imgPath: "/skill/nextjs.svg",
       },
       {
+        id: 12,
         name: "Redux",
         imgPath: "/skill/redux.svg",
       },
       {
+        id: 13,
         name: "Node.js",
         imgPath: "/skill/nodejs.svg",
       },
       {
+        id: 14,
         name: "Express.js",
         imgPath: "/skill/express.svg",
       },
 
       {
+        id: 15,
         name: "MongoDB",
         imgPath: "/skill/mongodb.svg",
       },
       {
+        id: 16,
         name: "Socket.io",
         imgPath: "/skill/socketio.svg",
       },
       {
+        id: 17,
         name: "Netlify",
         imgPath: "/skill/netlify.svg",
       },
 
       {
+        id: 18,
         name: "Vercel",
         imgPath: "/skill/vercel.svg",
       },
@@ -347,7 +418,7 @@ export const sidebarItems = [
     id: 5,
     title: "Create Project",
     path: "/create-project",
-    icon: <FolderPlus size={20} />,
+    icon: <ListPlus size={20} />,
   },
   {
     id: 6,
@@ -365,7 +436,7 @@ export const sidebarItems = [
     id: 8,
     title: "All Skills",
     path: "/all-skills",
-    icon: <Paperclip size={20} />,
+    icon: <Component size={20} />,
   },
   {
     id: 9,
@@ -389,6 +460,6 @@ export const sidebarItems = [
     id: 12,
     title: "All Experiences",
     path: "/all-experiences",
-    icon: <AlignRight size={20} />,
+    icon: <FolderPlus size={20} />,
   },
 ];

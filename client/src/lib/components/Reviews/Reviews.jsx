@@ -13,7 +13,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
 import { Star } from "lucide-react";
-import { reviewsData } from "../../data";
+import { reviewsData } from "../../util/data";
 
 const Reviews = () => {
   const renderStars = (rating) => {

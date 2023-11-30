@@ -11,7 +11,7 @@ const ProjectCard = ({ project }) => {
   return (
     <Card className="relative overflow-hidden group">
       <CardHeader className="p-0">
-        <div className="relative w-full h-[300px] flex items-center overflow-hidden xl:bg-no-repeat bg-tertiary dark:bg-secondary/40 xl:bg-work_projects_bg_light xl:dark:bg-work_projects_bg_dark xl:bg-[110%] justify-center">
+        <div className="relative w-full h-[300px] flex items-center overflow-hidden xl:bg-no-repeat bg-tertiary dark:bg-secondary/40 xl:bg-work_project_bg_light xl:dark:bg-work_project_bg_dark xl:bg-[110%] justify-center">
           <Image
             className="absolute bottom-0 shadow-2xl"
             src={image}

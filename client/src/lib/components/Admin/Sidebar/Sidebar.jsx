@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { sidebarItems } from "../../data";
+import { sidebarItems } from "../../../util/data";
 import { LogOut } from "lucide-react";
 
 const Sidebar = () => {
@@ -17,7 +17,7 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="flex flex-col mx-5">
+    <div className="flex flex-col mx-5 ">
       {sidebarItems?.map((item) => {
         const isSelected = selectedItem === item.id;
         const isActive = activeItem === item.id;

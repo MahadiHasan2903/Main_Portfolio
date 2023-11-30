@@ -8,7 +8,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
 import ProjectCard from "./ProjectCard";
-import { projectData } from "../../data";
+import { projectData } from "../../util/data";
 
 const Work = () => {
   return (

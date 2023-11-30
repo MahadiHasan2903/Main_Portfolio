@@ -1,7 +1,12 @@
 import React from "react";
+import AllUsers from "../../../lib/components/Admin/Users/AllUsers";
 
-const AllUsers = () => {
-  return <div>AllUsers</div>;
+const AllUsersPage = () => {
+  return (
+    <div className="flex justify-center">
+      <AllUsers />
+    </div>
+  );
 };
 
-export default AllUsers;
+export default AllUsersPage;

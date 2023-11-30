@@ -1,7 +1,13 @@
 import React from "react";
 
-const CreateSkill = () => {
-  return <div>CreateSkill</div>;
+import CreateSkill from "../../../lib/components/Admin/Skill/CreateSkill";
+
+const CreateSkillPage = () => {
+  return (
+    <div className="flex justify-center">
+      <CreateSkill />
+    </div>
+  );
 };
 
-export default CreateSkill;
+export default CreateSkillPage;

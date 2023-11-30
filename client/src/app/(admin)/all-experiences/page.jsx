@@ -1,7 +1,12 @@
 import React from "react";
+import AllExperience from "../../../lib/components/Admin/Experience/AllExperience";
 
-const AllExperiences = () => {
-  return <div>AllExperiences</div>;
+const AllExperiencesPage = () => {
+  return (
+    <div className="flex justify-center">
+      <AllExperience />
+    </div>
+  );
 };
 
-export default AllExperiences;
+export default AllExperiencesPage;

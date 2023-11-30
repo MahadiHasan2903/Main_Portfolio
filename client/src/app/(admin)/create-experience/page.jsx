@@ -1,7 +1,11 @@
 import React from "react";
-
-const CreateExperience = () => {
-  return <div>CreateExperience</div>;
+import CreateExperience from "../../../lib/components/Admin/CreateExperience.jsx";
+const CreateExperiencePage = () => {
+  return (
+    <div className="flex justify-center">
+      <CreateExperience />
+    </div>
+  );
 };
 
-export default CreateExperience;
+export default CreateExperiencePage;

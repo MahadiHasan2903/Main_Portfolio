@@ -1,7 +1,12 @@
 import React from "react";
+import AllProjects from "../../../lib/components/Admin/Projects/AllProjects";
 
-const AllProjects = () => {
-  return <div>AllProjects</div>;
+const AllProjectsPage = () => {
+  return (
+    <div className="flex justify-center">
+      <AllProjects />
+    </div>
+  );
 };
 
-export default AllProjects;
+export default AllProjectsPage;

@@ -1,10 +1,10 @@
 "use client";
 
 import React, { useState } from "react";
-import { Input } from "../ui/input";
-import { Button } from "../ui/button";
+import { Input } from "../../ui/input";
+import { Button } from "../../ui/button";
 
-const CreateInfo = () => {
+const UpdateInfo = () => {
   const [formData, setFormData] = useState({
     name: "",
     phoneNumber: "",
@@ -28,8 +28,8 @@ const CreateInfo = () => {
     console.log(formData);
   };
   return (
-    <div className="w-[80%] 800px:w-[50%] bg-tertiary  shadow h-[80vh] rounded-[4px] p-3 overflow-y-scroll flex flex-col items-center text-center">
-      <h1 className="py-5 h2">Create your Information</h1>
+    <div className="w-[90%] 800px:w-[50%] bg-tertiary dark:bg-secondary/40  shadow h-[80vh] rounded-[4px] p-3 overflow-y-scroll flex flex-col items-center text-center">
+      <h1 className="py-5 h2">Update your Information</h1>
       <form
         className="flex flex-col w-full md:w-[80%] gap-y-4 xl:w-[50%] my-10"
         onSubmit={handleSubmit}
@@ -109,11 +109,11 @@ const CreateInfo = () => {
           type="submit"
           className="flex gap-x-1 items-center max-w-[200px] "
         >
-          Create Information
+          Update
         </Button>
       </form>
     </div>
   );
 };
 
-export default CreateInfo;
+export default UpdateInfo;
