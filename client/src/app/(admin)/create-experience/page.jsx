@@ -1,5 +1,5 @@
 import React from "react";
-import CreateExperience from "../../../lib/components/Admin/CreateExperience.jsx";
+import CreateExperience from "../../../lib/components/Admin/Experience/CreateExperience";
 const CreateExperiencePage = () => {
   return (
     <div className="flex justify-center">

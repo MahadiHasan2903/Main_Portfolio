@@ -26,6 +26,14 @@ const informationSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    primaryImage: {
+      type: String,
+      required: true,
+    },
+    secondaryImage: {
+      type: String,
+      required: true,
+    },
     totalExperience: {
       type: Number,
       required: true,

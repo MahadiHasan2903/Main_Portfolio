@@ -463,3 +463,85 @@ export const sidebarItems = [
     icon: <FolderPlus size={20} />,
   },
 ];
+
+export const users = [
+  {
+    id: 1,
+    name: "Alice",
+    joinedAt: "12 Mar, 2023",
+  },
+  {
+    id: 2,
+    name: "John",
+    joinedAt: "22 Mar, 2023",
+  },
+
+  {
+    id: 3,
+    name: "Mark",
+    joinedAt: "08 Mar, 2023",
+  },
+  {
+    id: 4,
+    name: "Alice",
+    joinedAt: "12 Mar, 2023",
+  },
+
+  {
+    id: 5,
+    name: "John",
+    joinedAt: "27 Mar, 2023",
+  },
+
+  {
+    id: 6,
+    name: "Alice",
+    joinedAt: "18 Mar, 2023",
+  },
+
+  {
+    id: 7,
+    name: "John",
+    joinedAt: "22 Mar, 2023",
+  },
+
+  {
+    id: 8,
+    name: "Mark",
+    joinedAt: "08 Mar, 2023",
+  },
+  {
+    id: 9,
+    name: "Alice",
+    joinedAt: "12 Mar, 2023",
+  },
+
+  {
+    id: 10,
+    name: "John",
+    joinedAt: "27 Mar, 2023",
+  },
+  {
+    id: 11,
+    name: "John",
+    joinedAt: "27 Mar, 2023",
+  },
+
+  {
+    id: 12,
+    name: "Alice",
+    joinedAt: "18 Mar, 2023",
+  },
+
+  {
+    id: 13,
+    name: "John",
+    joinedAt: "22 Mar, 2023",
+  },
+
+  {
+    id: 14,
+    name: "Mark",
+    joinedAt: "08 Mar, 2023",
+  },
+];

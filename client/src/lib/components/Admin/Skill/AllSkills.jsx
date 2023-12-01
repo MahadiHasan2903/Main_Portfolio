@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import UpdateSkill from "./UpdateSkill";
 import { skillData } from "../../../util/data";
 import { ChevronLeft, ChevronRight, PenSquare, Trash2 } from "lucide-react";
 import Image from "next/image";
@@ -8,6 +9,8 @@ import Image from "next/image";
 const AllSkills = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [open, setOpen] = useState(false);
+  const [selectedSkill, setSelectedSkill] = useState(null);
 
   const skillsData = skillData.find((data) => data.title === "skills");
   const skills = skillsData ? skillsData.data : [];
@@ -16,6 +19,16 @@ const AllSkills = () => {
   const currentSkills = skills.slice(indexOfFirstSkill, indexOfLastSkill);
 
   const totalPages = Math.ceil(skills.length / rowsPerPage);
+
+  const handleEdit = (skill) => {
+    setSelectedSkill(skill);
+    setOpen(true);
+  };
+
+  const closeUpdateSkill = () => {
+    setOpen(false);
+    setSelectedSkill(null);
+  };
 
   const handleDelete = (id) => {
     console.log(`Deleting skill with ID: ${id}`);
@@ -27,7 +40,7 @@ const AllSkills = () => {
   return (
     <div
       className="w-[80%] 800px:w-[50%] bg-tertiary dark:bg-secondary/40 shadow h-[90vh] rounded-[4px] 
-      flex flex-col items-center text-center overflow-y-scroll "
+      flex flex-col items-center text-center overflow-y-auto lg:overflow-x-hidden "
     >
       <h1 className="pt-5 md:h2 h3">All Skills List</h1>
       <div className="flex flex-col items-center justify-center w-full m-5">
@@ -58,7 +71,7 @@ const AllSkills = () => {
                 </td>
 
                 <td className="py-2 border">
-                  <button>
+                  <button onClick={() => handleEdit(skill)}>
                     <PenSquare size={20} className="text-primary" />
                   </button>
                 </td>
@@ -124,6 +137,11 @@ const AllSkills = () => {
           </div>
         </div>
       </div>
+      {open && selectedSkill && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+          <UpdateSkill skill={selectedSkill} onClose={closeUpdateSkill} />
+        </div>
+      )}
     </div>
   );
 };

@@ -13,6 +13,7 @@ const educationRoute = require("./routes/educationRoute");
 const experienceRoute = require("./routes/experienceRoute");
 const projectRoute = require("./routes/projectRoute");
 const skillRoute = require("./routes/skillRoute");
+const blogRoute = require("./routes/blogRoute");
 
 dotenv.config();
 
@@ -47,7 +48,8 @@ app.use(
   educationRoute,
   experienceRoute,
   skillRoute,
-  projectRoute
+  projectRoute,
+  blogRoute
 );
 
 // Server

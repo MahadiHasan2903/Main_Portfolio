@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import UpdateProject from "./UpdateProject";
 import { projectData } from "../../../util/data";
 import { PenSquare, ChevronLeft, ChevronRight, Trash2 } from "lucide-react";
 
@@ -8,6 +9,8 @@ const AllProjects = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [projects, setProjects] = useState(projectData);
+  const [open, setOpen] = useState(false);
+  const [selectedProject, setSelectedProject] = useState(null);
 
   const indexOfLastProject = currentPage * rowsPerPage;
   const indexOfFirstProject = indexOfLastProject - rowsPerPage;
@@ -17,6 +20,16 @@ const AllProjects = () => {
   );
 
   const totalPages = Math.ceil(projects.length / rowsPerPage);
+
+  const handleEdit = (project) => {
+    setSelectedProject(project);
+    setOpen(true);
+  };
+
+  const closeUpdateProject = () => {
+    setOpen(false);
+    setSelectedProject(null);
+  };
 
   const handleDelete = (id) => {
     const updatedProjects = projects.filter((project) => project.id !== id);
@@ -28,7 +41,7 @@ const AllProjects = () => {
   };
 
   return (
-    <div className="w-[80%] 800px:w-[50%] bg-tertiary dark:bg-secondary/40 shadow h-[85vh] rounded-[4px] flex flex-col items-center text-center overflow-auto lg:overflow-hidden">
+    <div className="w-[80%] 800px:w-[50%] bg-tertiary dark:bg-secondary/40 shadow h-[85vh] rounded-[4px] flex flex-col items-center text-center overflow-auto overflow-y-auto lg:overflow-x-hidden">
       <h1 className="pt-5 md:h2 h3">All Projects List</h1>
       <div className="flex flex-col items-center justify-center w-full m-5">
         <table className="w-[90%] m-5 border-collapse border-gray-600 dark:bg-transparent">
@@ -50,7 +63,7 @@ const AllProjects = () => {
                 <td className="py-3 border">{project.category}</td>
                 <td className="py-3 border">{project.technologies}</td>
                 <td className="py-3 border">
-                  <button>
+                  <button onClick={() => handleEdit(project)}>
                     <PenSquare size={20} className="text-primary" />
                   </button>
                 </td>
@@ -114,6 +127,14 @@ const AllProjects = () => {
           </div>
         </div>
       </div>
+      {open && selectedProject && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+          <UpdateProject
+            project={selectedProject}
+            onClose={closeUpdateProject}
+          />
+        </div>
+      )}
     </div>
   );
 };
