@@ -4,10 +4,22 @@ import React, { useEffect, useState } from "react";
 import { Input } from "../../ui/input";
 import { Button } from "../../ui/button";
 import { X, Paperclip } from "lucide-react";
+import uploadImageOnCloudinary from "../../../util/uploadCloudinary";
+import api from "../../../../app/api";
+import { useSession } from "next-auth/react";
+import { toast } from "react-toastify";
 
 const UpdateSkill = ({ skill, onClose }) => {
+  const { data: session } = useSession();
+  const token = session?.token;
   const [name, setName] = useState("");
   const [selectedImage, setSelectedImage] = useState(null);
+
+  useEffect(() => {
+    if (skill) {
+      setName(skill.name);
+    }
+  }, [skill]);
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -23,15 +35,43 @@ const UpdateSkill = ({ skill, onClose }) => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log({ name, selectedImage });
-  };
-  useEffect(() => {
-    if (skill) {
-      setName(skill.name);
+
+    try {
+      if (!name) {
+        toast.error("Please provide a skill name");
+        return;
+      }
+
+      let imgPath = null;
+
+      if (selectedImage) {
+        const uploadResponse = await uploadImageOnCloudinary(selectedImage);
+        imgPath = uploadResponse.url;
+      }
+
+      const updateSkillData = {
+        name,
+        imgPath,
+      };
+
+      console.log(updateSkillData);
+
+      const response = await api.skill.updateSkill(
+        updateSkillData,
+        token,
+        skill._id
+      );
+      console.log("Skill updated:", response);
+
+      toast.success("Skill updated successfully!");
+      setName("");
+      setSelectedImage(null);
+    } catch (error) {
+      toast.error("Error updating skill");
     }
-  }, [skill]);
+  };
 
   return (
     <div className="w-[50%] 800px:w-[50%] bg-tertiary relative dark:bg-secondary/40  shadow h-[80vh] rounded-[4px] p-3 overflow-y-scroll flex flex-col items-center text-center">

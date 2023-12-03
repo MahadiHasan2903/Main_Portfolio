@@ -5,6 +5,7 @@ import { Outfit } from "next/font/google";
 import Header from "../lib/components/Header/Header";
 import Footer from "../lib/components/Footer/Footer";
 import { ThemeProvider } from "../lib/components/Theme/ThemeProvider";
+import AuthProvider from "../lib/components/AuthProvider/AuthProvider";
 
 const outfit = Outfit({ subsets: ["latin"] });
 
@@ -17,21 +18,23 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={outfit.className}>
-        <ThemeProvider attribute="class" defaultTheme="dark">
-          <Header />
-          {children}
-          <ToastContainer
-            position="top-center"
-            autoClose={2000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            draggable
-            theme="dark"
-          />
-          <Footer />
-        </ThemeProvider>
+        <AuthProvider>
+          <ThemeProvider attribute="class" defaultTheme="dark">
+            <Header />
+            {children}
+            <ToastContainer
+              position="top-center"
+              autoClose={2000}
+              hideProgressBar={false}
+              newestOnTop={false}
+              closeOnClick
+              rtl={false}
+              draggable
+              theme="dark"
+            />
+            <Footer />
+          </ThemeProvider>
+        </AuthProvider>
       </body>
     </html>
   );

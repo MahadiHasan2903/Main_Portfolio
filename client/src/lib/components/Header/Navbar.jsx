@@ -2,17 +2,22 @@ import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
-
-const links = [
-  { path: "/", name: "home" },
-  { path: "/projects", name: "my projects" },
-  { path: "/contact", name: "contact" },
-  { path: "/login", name: "login" },
-  { path: "/dashboard", name: "dashboard" },
-];
+import { useSession } from "next-auth/react";
 
 const Navbar = ({ containerStyles, linkStyles, underlineStyles }) => {
+  const { data: session } = useSession();
+  const userRole = session?.user?.role;
+
   const path = usePathname();
+
+  const links = [
+    { path: "/", name: "home" },
+    { path: "/projects", name: "my projects" },
+    { path: "/contact", name: "contact" },
+    userRole === "admin"
+      ? { path: "/dashboard", name: "dashboard" }
+      : { path: "/login", name: "login" },
+  ];
 
   return (
     <nav className={`${containerStyles}`}>

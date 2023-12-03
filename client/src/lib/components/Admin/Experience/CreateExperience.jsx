@@ -3,8 +3,13 @@
 import React, { useState } from "react";
 import { Input } from "../../ui/input";
 import { Button } from "../../ui/button";
+import api from "../../../../app/api";
+import { toast } from "react-toastify";
+import { useSession } from "next-auth/react";
 
 const CreateExperience = () => {
+  const { data: session } = useSession();
+  const token = session?.token;
   const [formData, setFormData] = useState({
     organization: "",
     designation: "",
@@ -16,9 +21,33 @@ const CreateExperience = () => {
     setFormData({ ...formData, [id]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+
+    try {
+      const createExperienceData = {
+        organization: formData.organization,
+        designation: formData.designation,
+        years: formData.years,
+      };
+
+      const response = await api.experience.createExperience(
+        createExperienceData,
+        token
+      );
+      console.log("Experience created:", response);
+
+      setFormData({
+        organization: "",
+        designation: "",
+        years: "",
+      });
+
+      toast.success("Experience created successfully!");
+    } catch (error) {
+      console.error("Error creating experience:", error);
+      toast.error("Error creating experience");
+    }
   };
   return (
     <div className="w-[80%] 800px:w-[50%] bg-tertiary dark:bg-secondary/40  shadow h-[80vh] rounded-[4px] p-3 overflow-y-scroll flex flex-col items-center text-center">

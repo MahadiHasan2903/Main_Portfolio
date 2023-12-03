@@ -4,8 +4,13 @@ import React, { useEffect, useState } from "react";
 import { Input } from "../../ui/input";
 import { Button } from "../../ui/button";
 import { X } from "lucide-react";
+import { useSession } from "next-auth/react";
+import api from "../../../../app/api";
+import { toast } from "react-toastify";
 
 const UpdateEducation = ({ education, onClose }) => {
+  const { data: session } = useSession();
+  const token = session?.token;
   const [formData, setFormData] = useState({
     institution: "",
     degree: "",
@@ -27,10 +32,38 @@ const UpdateEducation = ({ education, onClose }) => {
     setFormData({ ...formData, [id]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+
+    try {
+      const updateEducationData = {
+        institution: formData.institution,
+        degree: formData.degree,
+        session: formData.session,
+      };
+
+      console.log("Update Education Data:", updateEducationData);
+      console.log("Sending request...");
+
+      const updateEducationResponse = await api.education.updateEducation(
+        updateEducationData,
+        token,
+        education._id
+      );
+
+      console.log("Update Education Response:", updateEducationResponse);
+      setFormData({
+        institution: "",
+        degree: "",
+        session: "",
+      });
+      toast.success("Education updated successfully!");
+    } catch (error) {
+      console.error("Error updating education:", error.message);
+      toast.error("Failed to update education. Please try again.");
+    }
   };
+
   return (
     <div className="w-[50%] 800px:w-[50%] bg-tertiary dark:bg-secondary/40  shadow h-[80vh] rounded-[4px] p-3 overflow-y-scroll flex flex-col items-center text-center relative">
       <h1 className="py-5 h2">Update your Education</h1>

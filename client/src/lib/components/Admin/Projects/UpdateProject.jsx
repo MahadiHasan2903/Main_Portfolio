@@ -5,19 +5,26 @@ import { Input } from "../../ui/input";
 import { Button } from "../../ui/button";
 import { Paperclip, X } from "lucide-react";
 import uploadImageOnCloudinary from "../../../util/uploadCloudinary";
+import { useSession } from "next-auth/react";
+import api from "../../../../app/api";
+import { toast } from "react-toastify";
 
 const UpdateProject = ({ project, onClose }) => {
+  const { data: session } = useSession();
+  const token = session?.token;
   const [formData, setFormData] = useState({
     name: "",
     technologies: "",
     category: "",
     github: "",
     preview: "",
+    image: null,
   });
 
   useEffect(() => {
     if (project) {
       setFormData({
+        id: project._id,
         name: project.name,
         technologies: project.technologies,
         category: project.category,
@@ -27,8 +34,6 @@ const UpdateProject = ({ project, onClose }) => {
     }
   }, [project]);
 
-  const [selectedImage, setSelectedImage] = useState(null);
-
   const handleChange = (e) => {
     const { id, value } = e.target;
     setFormData({ ...formData, [id]: value });
@@ -36,30 +41,62 @@ const UpdateProject = ({ project, onClose }) => {
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
-    setSelectedImage(file);
 
     if (file) {
       const reader = new FileReader();
       reader.onload = function (event) {
-        setSelectedImage(event.target.result);
+        setFormData({ ...formData, image: event.target.result });
       };
       reader.readAsDataURL(file);
     } else {
-      setSelectedImage(null);
+      setFormData({ ...formData, image: null });
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+    console.log("Form Data:", formData);
 
-    if (selectedImage) {
+    if (formData.image) {
       try {
-        const uploadedImage = await uploadImageOnCloudinary(selectedImage);
-        console.log("Image uploaded successfully:", uploadedImage.secure_url);
+        console.log("Uploading image to Cloudinary...");
+        const uploadedImage = await uploadImageOnCloudinary(formData.image);
+        console.log("Uploaded Image URL:", uploadedImage.url);
+
+        const updateProjectData = {
+          name: formData.name,
+          technologies: formData.technologies,
+          category: formData.category,
+          github: formData.github,
+          preview: formData.preview,
+          image: uploadedImage.url,
+        };
+
+        console.log("Update Project Data:", updateProjectData);
+        console.log("Sending request...");
+
+        const updateProjectResponse = await api.project.updateProject(
+          updateProjectData,
+          token,
+          project._id
+        );
+
+        console.log("Update Project Response:", updateProjectResponse);
+        setFormData({
+          name: "",
+          technologies: "",
+          category: "",
+          github: "",
+          preview: "",
+          image: null,
+        });
+        toast.success("Project updated successfully!");
       } catch (error) {
         console.error("Error uploading image to Cloudinary:", error.message);
+        toast.error("Failed to update project. Please try again.");
       }
+    } else {
+      console.log("No selected image found.");
     }
   };
 
@@ -118,10 +155,10 @@ const UpdateProject = ({ project, onClose }) => {
             onChange={handleImageChange}
           />
 
-          {selectedImage ? (
+          {formData.image ? (
             <div className="flex flex-wrap items-center w-full">
               <img
-                src={selectedImage}
+                src={formData.image}
                 alt="Selected"
                 className="h-[120px] w-[120px] object-cover m-2"
               />

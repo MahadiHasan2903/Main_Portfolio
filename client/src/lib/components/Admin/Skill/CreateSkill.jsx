@@ -4,8 +4,14 @@ import React, { useState } from "react";
 import { Input } from "../../ui/input";
 import { Button } from "../../ui/button";
 import { Paperclip } from "lucide-react";
+import api from "../../../../app/api";
+import { useSession } from "next-auth/react";
+import { toast } from "react-toastify";
+import uploadImageOnCloudinary from "../../../util/uploadCloudinary";
 
 const CreateSkill = () => {
+  const { data: session } = useSession();
+  const token = session?.token;
   const [name, setName] = useState("");
   const [selectedImage, setSelectedImage] = useState(null);
 
@@ -23,9 +29,39 @@ const CreateSkill = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log({ name, selectedImage });
+
+    try {
+      if (!name) {
+        toast.error("Please provide a skill name");
+        return;
+      }
+
+      let imgPath = null;
+
+      if (selectedImage) {
+        const uploadResponse = await uploadImageOnCloudinary(selectedImage);
+        imgPath = uploadResponse.url;
+      }
+
+      const createSkillData = {
+        name,
+        imgPath,
+      };
+
+      console.log(createSkillData);
+
+      const response = await api.skill.createSkill(createSkillData, token);
+      console.log("Skill created:", response);
+
+      toast.success("Skill created successfully!");
+      setName("");
+      setSelectedImage(null);
+    } catch (error) {
+      console.error("Error creating skill:", error);
+      toast.error("Error creating skill");
+    }
   };
 
   return (

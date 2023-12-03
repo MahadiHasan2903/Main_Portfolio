@@ -1,11 +1,17 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { qualificationData } from "../../../util/data";
 import { PenSquare, Trash2, ChevronLeft, ChevronRight } from "lucide-react";
 import UpdateExperience from "./UpdateExperience";
+import { useSession } from "next-auth/react";
+import api from "../../../../app/api";
+import { toast } from "react-toastify";
 
 const AllExperience = () => {
+  const { data: session } = useSession();
+  const token = session?.token;
+
   const experienceData = qualificationData.find(
     (data) => data.title === "experience"
   );
@@ -14,18 +20,43 @@ const AllExperience = () => {
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [open, setOpen] = useState(false);
   const [selectedExperience, setSelectedExperience] = useState(null);
+  const [fetchedExperiences, setFetchedExperiences] = useState([]);
 
   const indexOfLastExperience = currentPage * rowsPerPage;
   const indexOfFirstExperience = indexOfLastExperience - rowsPerPage;
-  const currentExperience = experienceData.data.slice(
+  const currentExperience = fetchedExperiences.slice(
     indexOfFirstExperience,
     indexOfLastExperience
   );
 
   const totalPages = Math.ceil(experienceData.data.length / rowsPerPage);
 
-  const handleDelete = (id) => {
-    // Implement deletion logic
+  useEffect(() => {
+    const fetchAllExperiences = async () => {
+      try {
+        const response = await api.experience.getAllExperiences();
+        setFetchedExperiences(response.data);
+        console.log(response.data);
+      } catch (error) {
+        console.error("Error occurred while fetching user data:", error);
+      }
+    };
+
+    fetchAllExperiences();
+  }, []);
+
+  const handleDelete = async (id) => {
+    try {
+      await api.experience.deleteExperience(id, token);
+
+      setFetchedExperiences((prevExperiences) =>
+        prevExperiences.filter((experience) => experience._id !== id)
+      );
+
+      toast.success("Experience deleted successfully");
+    } catch (error) {
+      toast.error(`Error deleting experience: ${error}`);
+    }
   };
 
   const handleEdit = (experience) => {
@@ -50,7 +81,6 @@ const AllExperience = () => {
         <table className="w-[90%] m-5 border-collapse border-gray-600 dark:bg-transparent">
           <thead>
             <tr className="">
-              <th className="px-2 py-3 border">Id</th>
               <th className="py-3 border">Organization</th>
               <th className="py-3 border">Designation</th>
               <th className="py-3 border">Working period</th>
@@ -60,8 +90,7 @@ const AllExperience = () => {
           </thead>
           <tbody>
             {currentExperience.map((experience) => (
-              <tr key={experience.id} className="">
-                <td className="py-3 border">{experience.id}</td>
+              <tr key={experience._id} className="">
                 <td className="py-3 border">{experience.organization}</td>
                 <td className="py-3 border">{experience.designation}</td>
                 <td className="py-3 border">{experience.years}</td>
@@ -71,7 +100,7 @@ const AllExperience = () => {
                   </button>
                 </td>
                 <td className="py-3 border">
-                  <button onClick={() => handleDelete(experience.id)}>
+                  <button onClick={() => handleDelete(experience._id)}>
                     <Trash2 size={20} className="text-primary" />
                   </button>
                 </td>
@@ -79,8 +108,8 @@ const AllExperience = () => {
             ))}
           </tbody>
         </table>
-        <div className="flex items-center justify-between w-[80%] mt-4">
-          <div className="w-[80%] text-left">
+        <div className="flex items-center justify-between w-[80%] mt-4 flex-col md:flex-row">
+          <div className="w-[80%] text-left mb-5 md:mb-0">
             <span>Show:</span>
             <select
               className="p-1 mx-2 mt-1 border rounded cursor-pointer"

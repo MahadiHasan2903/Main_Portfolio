@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { sidebarItems } from "../../../util/data";
 import { LogOut } from "lucide-react";
+import { signOut } from "next-auth/react";
 
 const Sidebar = () => {
   const [selectedItem, setSelectedItem] = useState(null);
@@ -42,7 +43,12 @@ const Sidebar = () => {
           </Link>
         );
       })}
-      <p className="flex items-center my-4 text-[20px] px-2 py-1 rounded-lg border-b hover:bg-primary hover:text-white cursor-pointer">
+      <p
+        className="flex items-center my-4 text-[20px] px-2 py-1 rounded-lg border-b hover:bg-primary hover:text-white cursor-pointer"
+        onClick={() => {
+          signOut({ callbackUrl: "/" });
+        }}
+      >
         <span>
           <LogOut />
         </span>

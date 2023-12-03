@@ -1,24 +1,33 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import UpdateSkill from "./UpdateSkill";
 import { skillData } from "../../../util/data";
 import { ChevronLeft, ChevronRight, PenSquare, Trash2 } from "lucide-react";
 import Image from "next/image";
+import api from "../../../../app/api";
+import { useSession } from "next-auth/react";
+import { toast } from "react-toastify";
 
 const AllSkills = () => {
+  const { data: session } = useSession();
+  const token = session?.token;
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [open, setOpen] = useState(false);
   const [selectedSkill, setSelectedSkill] = useState(null);
+  const [fetchedSkills, setFetchedSkills] = useState([]);
 
   const skillsData = skillData.find((data) => data.title === "skills");
   const skills = skillsData ? skillsData.data : [];
   const indexOfLastSkill = currentPage * rowsPerPage;
   const indexOfFirstSkill = indexOfLastSkill - rowsPerPage;
-  const currentSkills = skills.slice(indexOfFirstSkill, indexOfLastSkill);
+  const currentSkills = fetchedSkills.slice(
+    indexOfFirstSkill,
+    indexOfLastSkill
+  );
 
-  const totalPages = Math.ceil(skills.length / rowsPerPage);
+  const totalPages = Math.ceil(fetchedSkills.length / rowsPerPage);
 
   const handleEdit = (skill) => {
     setSelectedSkill(skill);
@@ -30,13 +39,40 @@ const AllSkills = () => {
     setSelectedSkill(null);
   };
 
-  const handleDelete = (id) => {
-    console.log(`Deleting skill with ID: ${id}`);
+  const handleDelete = async (id) => {
+    try {
+      await api.skill.deleteSkill(id, token);
+
+      setFetchedSkills((prevSkills) =>
+        prevSkills.filter((skill) => skill._id !== id)
+      );
+
+      toast.success("Project deleted successfully");
+    } catch (error) {
+      toast.error(`Error deleting project: ${error}`);
+    }
   };
 
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
+
+  useEffect(() => {
+    const fetchAllSkills = async () => {
+      try {
+        const response = await api.skill.getAllSkills();
+        console.log(response);
+        if (response && response.data) {
+          setFetchedSkills(response.data);
+        }
+        console.log("Response:", fetchedSkills);
+      } catch (error) {
+        console.error("Error occurred while fetching user data:", error);
+      }
+    };
+
+    fetchAllSkills();
+  }, []);
   return (
     <div
       className="w-[80%] 800px:w-[50%] bg-tertiary dark:bg-secondary/40 shadow h-[90vh] rounded-[4px] 
@@ -56,8 +92,8 @@ const AllSkills = () => {
           </thead>
           <tbody>
             {currentSkills.map((skill) => (
-              <tr key={skill.id}>
-                <td className="py-2 border">{skill.id}</td>
+              <tr key={skill._id}>
+                <td className="py-2 border">{skill._id}</td>
                 <td className="py-2 border">{skill.name}</td>
                 <td className="py-2 text-center border">
                   <div className="flex items-center justify-center">
@@ -76,7 +112,7 @@ const AllSkills = () => {
                   </button>
                 </td>
                 <td className="py-2 border">
-                  <button onClick={() => handleDelete(skill.id)}>
+                  <button onClick={() => handleDelete(skill._id)}>
                     <Trash2 size={20} className="text-primary" />
                   </button>
                 </td>
@@ -84,8 +120,8 @@ const AllSkills = () => {
             ))}
           </tbody>
         </table>
-        <div className="flex items-center justify-between w-[80%] mt-4 ">
-          <div className="w-[80%] text-left">
+        <div className="flex items-center justify-between w-[80%] mt-4 flex-col md:flex-row">
+          <div className="w-[80%] text-left mb-5 md:mb-0">
             <span>Show:</span>
             <select
               className="p-1 mx-2 mt-1 border rounded cursor-pointer"

@@ -27,7 +27,6 @@ informationRoute.delete(
 );
 informationRoute.put(
   "/update-info",
-
   isAuthenticated,
   authorizeRoles("admin"),
   updateInformation

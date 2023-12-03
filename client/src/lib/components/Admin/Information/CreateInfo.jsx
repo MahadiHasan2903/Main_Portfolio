@@ -3,10 +3,17 @@
 import React, { useState } from "react";
 import { Input } from "../../ui/input";
 import { Button } from "../../ui/button";
-import { Camera } from "lucide-react";
+import { Camera, UploadCloud } from "lucide-react";
 import Image from "next/image";
+import api from "../../../../app/api";
+import { toast } from "react-toastify";
+import uploadImageOnCloudinary from "../../../util/uploadCloudinary";
+import { useSession } from "next-auth/react";
 
 const CreateInfo = () => {
+  const { data: session } = useSession();
+  const token = session?.token;
+
   const [formData, setFormData] = useState({
     name: "",
     phoneNumber: "",
@@ -41,10 +48,57 @@ const CreateInfo = () => {
     setFormData({ ...formData, [id]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+
+    try {
+      // Ensure both primary and secondary images are uploaded
+      if (!formData.primaryImage || !formData.secondaryImage) {
+        throw new Error("Please upload both primary and secondary images.");
+      }
+
+      // Upload primary image to Cloudinary
+      const primaryImage = await uploadImageOnCloudinary(formData.primaryImage);
+      console.log("Primary Image URL:", primaryImage);
+
+      // Upload secondary image to Cloudinary
+      const secondaryImage = await uploadImageOnCloudinary(
+        formData.secondaryImage
+      );
+      console.log("Secondary Image URL:", secondaryImage);
+
+      // Prepare information for user creation
+      const createInformation = {
+        name: formData.name,
+        phoneNumber: formData.phoneNumber,
+        email: formData.email,
+        address: formData.address,
+        dateOfBirth: formData.dateOfBirth,
+        degree: formData.degree,
+        languages: formData.languages,
+        primaryImage: primaryImage.url,
+        secondaryImage: secondaryImage.url,
+        totalExperience: formData.totalExperience,
+        totalProjects: formData.totalProjects,
+        totalClients: formData.totalClients,
+      };
+
+      const createUserResponse = await api.info.createInfo(
+        createInformation,
+        token
+      );
+
+      if (!createUserResponse.ok) {
+        throw new Error("Error creating user. Please try again.");
+      } else {
+        toast.success("User created successfully!");
+      }
+    } catch (error) {
+      console.error("Error creating user:", error);
+      toast.error(error.message);
+    }
   };
+
   return (
     <div className="w-[80%] 800px:w-[50%] bg-tertiary dark:bg-secondary/40  shadow h-[90vh] rounded-[4px] p-3 overflow-y-scroll flex flex-col items-center text-center">
       <h1 className="py-5 h2">Create your Information</h1>
@@ -126,11 +180,12 @@ const CreateInfo = () => {
         className="flex flex-col w-full md:w-[80%] gap-y-4 xl:w-[70%] my-10"
         onSubmit={handleSubmit}
       >
-        <div className="flex items-center justify-around w-full">
+        <div className="flex flex-col items-center justify-around w-full ">
           <Input
             type="text"
             id="name"
             placeholder="Name"
+            className="my-2 "
             value={formData.name}
             onChange={handleChange}
           />
@@ -138,31 +193,32 @@ const CreateInfo = () => {
             type="text"
             id="phoneNumber"
             placeholder="Phone Number"
-            className="mx-2"
+            className="my-2 "
             value={formData.phoneNumber}
             onChange={handleChange}
           />
           <Input
-            type="text"
+            type="email"
             id="email"
             placeholder="Email"
+            className="my-2 "
             value={formData.email}
             onChange={handleChange}
           />
-        </div>
-        <div className="flex items-center justify-around w-full">
+
           <Input
             type="text"
             id="address"
             placeholder="Address"
+            className="my-2 "
             value={formData.address}
             onChange={handleChange}
           />
           <Input
-            type="text"
+            type="date"
             id="dateOfBirth"
             placeholder="Date of Birth"
-            className="mx-2"
+            className="my-2 "
             value={formData.dateOfBirth}
             onChange={handleChange}
           />
@@ -170,40 +226,41 @@ const CreateInfo = () => {
             type="text"
             id="degree"
             placeholder="Degree"
+            className="my-2 "
             value={formData.degree}
             onChange={handleChange}
           />
-        </div>
-        <div className="flex items-center justify-around w-full">
+
           <Input
-            type="text"
+            type="number"
             id="totalExperience"
+            className="my-2 "
             placeholder="Total Experience"
             value={formData.totalExperience}
             onChange={handleChange}
           />
           <Input
-            type="text"
+            type="number"
             id="totalProjects"
             placeholder="Total Projects"
-            className="mx-2"
+            className="my-2 "
             value={formData.totalProjects}
             onChange={handleChange}
           />
           <Input
-            type="text"
+            type="number"
             id="totalClients"
             placeholder="Total Clients"
+            className="my-2 "
             value={formData.totalClients}
             onChange={handleChange}
           />
-        </div>
 
-        <div className="w-[50%]">
           <Input
             type="text"
             id="languages"
             placeholder="Languages"
+            className="my-2 "
             value={formData.languages}
             onChange={handleChange}
           />

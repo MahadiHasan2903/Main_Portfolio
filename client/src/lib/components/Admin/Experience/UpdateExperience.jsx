@@ -4,8 +4,13 @@ import React, { useEffect, useState } from "react";
 import { Input } from "../../ui/input";
 import { Button } from "../../ui/button";
 import { X } from "lucide-react";
+import { useSession } from "next-auth/react";
+import { toast } from "react-toastify";
+import api from "../../../../app/api";
 
 const UpdateExperience = ({ experience, onClose }) => {
+  const { data: session } = useSession();
+  const token = session?.token;
   const [formData, setFormData] = useState({
     organization: "",
     designation: "",
@@ -27,10 +32,38 @@ const UpdateExperience = ({ experience, onClose }) => {
     setFormData({ ...formData, [id]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+
+    try {
+      const updateExperienceData = {
+        organization: formData.organization,
+        designation: formData.designation,
+        years: formData.years,
+      };
+
+      console.log("Update Experience Data:", updateExperienceData);
+      console.log("Sending request...");
+
+      const updateExperienceResponse = await api.experience.updateExperience(
+        updateExperienceData,
+        token,
+        experience._id
+      );
+
+      console.log("Update Experience Response:", updateExperienceResponse);
+      setFormData({
+        organization: "",
+        designation: "",
+        years: "",
+      });
+      toast.success("Experience updated successfully!");
+    } catch (error) {
+      console.error("Error updating experience:", error.message);
+      toast.error("Failed to update experience. Please try again.");
+    }
   };
+
   return (
     <div className="w-[50%] 800px:w-[50%] bg-tertiary dark:bg-secondary/40  shadow h-[80vh] rounded-[4px] p-3 overflow-y-scroll flex flex-col items-center text-center relative">
       <h1 className="py-5 h3 ">Update your Experience</h1>

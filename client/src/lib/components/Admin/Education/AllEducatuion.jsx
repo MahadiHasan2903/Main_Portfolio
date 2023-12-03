@@ -1,28 +1,43 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import UpdateEducation from "./UpdateEducation";
-import { qualificationData } from "../../../util/data";
 import { PenSquare, Trash2, ChevronLeft, ChevronRight } from "lucide-react";
+import api from "../../../../app/api";
+import { useSession } from "next-auth/react";
+import { toast } from "react-toastify";
 
 const AllEducation = () => {
+  const { data: session } = useSession();
+  const token = session?.token;
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [open, setOpen] = useState(false);
   const [selectedEducation, setSelectedEducation] = useState(null);
-
-  const educationData = qualificationData.find(
-    (data) => data.title === "education"
-  );
+  const [fetchedEducations, setFetchedEducations] = useState([]);
 
   const indexOfLastEducation = currentPage * rowsPerPage;
   const indexOfFirstEducation = indexOfLastEducation - rowsPerPage;
-  const currentEducation = educationData.data.slice(
+  const currentEducation = fetchedEducations.slice(
     indexOfFirstEducation,
     indexOfLastEducation
   );
 
-  const totalPages = Math.ceil(educationData.data.length / rowsPerPage);
+  const totalPages = Math.ceil(fetchedEducations?.length / rowsPerPage);
+
+  useEffect(() => {
+    const fetchAllEducations = async () => {
+      try {
+        const response = await api.education.getAllEducations();
+        setFetchedEducations(response.data);
+        console.log(response.data);
+      } catch (error) {
+        console.error("Error occurred while fetching user data:", error);
+      }
+    };
+
+    fetchAllEducations();
+  }, []);
 
   const handleEdit = (education) => {
     setSelectedEducation(education);
@@ -32,8 +47,19 @@ const AllEducation = () => {
     setOpen(false);
     setSelectedEducation(null);
   };
-  const handleDelete = (id) => {
-    // Implement deletion logic
+
+  const handleDelete = async (id) => {
+    try {
+      await api.education.deleteEducation(id, token);
+
+      setSelectedEducation((prevEducations) =>
+        prevEducations?.filter((education) => education._id !== id)
+      );
+
+      toast.success("Education deleted successfully");
+    } catch (error) {
+      toast.error(`Error deleting Education: ${error}`);
+    }
   };
 
   const paginate = (pageNumber) => {
@@ -50,7 +76,6 @@ const AllEducation = () => {
         <table className="w-[90%] m-5 border-collapse border-gray-600 dark:bg-transparent">
           <thead>
             <tr className="">
-              <th className="px-2 py-3 border">Id</th>
               <th className="py-3 border">Institution</th>
               <th className="py-3 border">Degree</th>
               <th className="py-3 border">Session</th>
@@ -59,9 +84,8 @@ const AllEducation = () => {
             </tr>
           </thead>
           <tbody>
-            {currentEducation.map((education) => (
-              <tr key={education.id} className="">
-                <td className="py-3 border">{education.id}</td>
+            {currentEducation?.map((education) => (
+              <tr key={education._id} className="">
                 <td className="py-3 border">{education.institution}</td>
                 <td className="py-3 border">{education.degree}</td>
                 <td className="py-3 border">{education.session}</td>
@@ -71,7 +95,7 @@ const AllEducation = () => {
                   </button>
                 </td>
                 <td className="py-3 border">
-                  <button onClick={() => handleDelete(education.id)}>
+                  <button onClick={() => handleDelete(education._id)}>
                     <Trash2 size={20} className="text-primary" />
                   </button>
                 </td>
@@ -79,8 +103,8 @@ const AllEducation = () => {
             ))}
           </tbody>
         </table>
-        <div className="flex items-center justify-between w-[80%] mt-4">
-          <div className="w-[80%] text-left">
+        <div className="flex items-center justify-between w-[80%] mt-4 flex-col md:flex-row">
+          <div className="w-[80%] text-left mb-5 md:mb-0">
             <span>Show:</span>
             <select
               className="p-1 mx-2 mt-1 border rounded cursor-pointer"
