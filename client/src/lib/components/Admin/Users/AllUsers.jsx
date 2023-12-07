@@ -72,7 +72,7 @@ const AllUsers = () => {
     <div className="w-[80%] 800px:w-[50%] bg-tertiary dark:bg-secondary/40 shadow h-[85vh] rounded-[4px] flex flex-col items-center text-center overflow-y-auto lg:overflow-x-hidden">
       <h1 className="pt-5 md:h2 h3">All Users List</h1>
       <div className="flex flex-col items-center justify-center w-full m-5">
-        <table className="w-[90%] m-5 border-collapse border-gray-600 dark:bg-transparent">
+        <table className="w-[90%] m-5 border-collapse border-gray-600 dark:bg-transparent overflow-x-scroll">
           <thead>
             <tr>
               <th className="py-3 border">Name</th>

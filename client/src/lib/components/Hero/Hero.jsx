@@ -28,7 +28,7 @@ const Hero = () => {
   return (
     <section className="py-12 xl:py-24 h-[84vh] xl:pt-28 bg-hero bg-no-repeat bg-bottom bg-cover dark:bg-none">
       <div className="container mx-auto">
-        <div className="flex flex-col justify-between xl:flex-row gap-x-8">
+        <div className="flex flex-col items-center justify-between xl:flex-row gap-x-8">
           <div className="flex  max-w-[800px] flex-col justify-center mx-auto xl:mx-0 text-center xl:text-left">
             <div className="text-sm uppercase font-semibold mb-4 text-primary tracking-[4px]">
               Software Engineer
@@ -72,7 +72,7 @@ const Hero = () => {
               iconStyles="text-foreground text-[22px] hover:text-primary transition-all"
             />
           </div>
-          <div className="relative hidden xl:flex">
+          <div className="relative xl:flex xl:ml-0 ">
             <Badge
               containerStyles={"absolute top-[24%] -left-[7rem]"}
               icon={<RiBriefcaseFill />}

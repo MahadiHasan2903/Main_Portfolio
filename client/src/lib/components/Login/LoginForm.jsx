@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
-import { RouteOff, MailIcon, ArrowRightIcon } from "lucide-react";
+import { LogIn, MailIcon, ArrowRightIcon } from "lucide-react";
 import { signIn } from "next-auth/react";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
@@ -68,7 +68,7 @@ const LoginForm = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <RouteOff className="absolute right-6" size={20} />
+        <LogIn className="absolute right-6" size={20} />
       </div>
 
       <Button

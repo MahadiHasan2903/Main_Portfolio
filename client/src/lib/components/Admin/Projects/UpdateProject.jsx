@@ -101,7 +101,7 @@ const UpdateProject = ({ project, onClose }) => {
   };
 
   return (
-    <div className="w-[80%] 800px:w-[50%] relative bg-tertiary dark:bg-secondary/40  shadow h-[80vh] rounded-[4px] p-3 overflow-y-scroll flex flex-col items-center text-center">
+    <div className="w-[80%] 800px:w-[50%] relative bg-tertiary   shadow h-[80vh] rounded-[4px] p-3 overflow-y-scroll flex flex-col items-center text-center">
       <h1 className="py-5 h2">Update your Project</h1>
       <div className="absolute cursor-pointer right-5 top-2" onClick={onClose}>
         <X size={30} />

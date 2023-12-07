@@ -16,6 +16,7 @@ import {
   PackagePlus,
   LayoutDashboard,
   Component,
+  Code2,
 } from "lucide-react";
 
 export const reviewsData = [
@@ -436,7 +437,7 @@ export const sidebarItems = [
     id: 8,
     title: "All Skills",
     path: "/all-skills",
-    icon: <Component size={20} />,
+    icon: <Code2 size={20} />,
   },
   {
     id: 9,

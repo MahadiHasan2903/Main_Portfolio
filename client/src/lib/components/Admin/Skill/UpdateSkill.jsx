@@ -74,7 +74,7 @@ const UpdateSkill = ({ skill, onClose }) => {
   };
 
   return (
-    <div className="w-[50%] 800px:w-[50%] bg-tertiary relative dark:bg-secondary/40  shadow h-[80vh] rounded-[4px] p-3 overflow-y-scroll flex flex-col items-center text-center">
+    <div className="w-[50%] 800px:w-[50%] bg-tertiary relative   shadow h-[80vh] rounded-[4px] p-3 overflow-y-scroll flex flex-col items-center text-center">
       <h1 className="py-5 h2">Update your Skill</h1>
       <div className="absolute cursor-pointer right-5 top-2" onClick={onClose}>
         <X size={30} />

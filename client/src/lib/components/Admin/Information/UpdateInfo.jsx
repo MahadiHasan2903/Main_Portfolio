@@ -138,7 +138,7 @@ const UpdateInfo = () => {
               />
             ) : (
               <Image
-                src="/hero/developer.png"
+                src="/about/person.png"
                 alt="developer"
                 width={500}
                 height={500}
@@ -174,7 +174,7 @@ const UpdateInfo = () => {
               />
             ) : (
               <Image
-                src="/hero/developer.png"
+                src="/about/person.png"
                 alt="developer"
                 width={500}
                 height={500}

@@ -65,7 +65,7 @@ const UpdateExperience = ({ experience, onClose }) => {
   };
 
   return (
-    <div className="w-[50%] 800px:w-[50%] bg-tertiary dark:bg-secondary/40  shadow h-[80vh] rounded-[4px] p-3 overflow-y-scroll flex flex-col items-center text-center relative">
+    <div className="w-[50%] 800px:w-[50%] bg-tertiary   shadow h-[80vh] rounded-[4px] p-3 overflow-y-scroll flex flex-col items-center text-center relative">
       <h1 className="py-5 h3 ">Update your Experience</h1>
       <div className="absolute cursor-pointer right-5 top-2" onClick={onClose}>
         <X size={30} />

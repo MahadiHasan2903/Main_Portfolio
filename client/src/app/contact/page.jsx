@@ -37,7 +37,7 @@ const Contact = () => {
 
             <div className="flex items-center gap-x-8">
               <HomeIcon size={25} className="text-primary" />
-              <div>738 East Manikdi, East Manikdi, Dhaka Cantonment-1205</div>
+              <div>738 East Manikdi, East Manikdi, Dhaka Cantonment-1206</div>
             </div>
           </div>
 
