@@ -24,7 +24,9 @@ const app = express();
 // Middleware
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    // origin: "http://localhost:3000",
+    origin: "https://mdmahadihasan.vercel.app",
+
     credentials: true,
   })
 );
@@ -51,6 +53,10 @@ app.use(
   projectRoute,
   blogRoute
 );
+
+app.get("/", (req, res) => {
+  res.send("Hello world from portfolio backend server!");
+});
 
 // Server
 const port = process.env.PORT || 8080;
