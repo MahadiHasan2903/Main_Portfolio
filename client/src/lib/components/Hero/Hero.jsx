@@ -26,7 +26,7 @@ const Hero = () => {
     document.body.removeChild(link);
   };
   return (
-    <section className="py-12 xl:py-24 h-[84vh] xl:pt-28 bg-hero bg-no-repeat bg-bottom bg-cover dark:bg-none">
+    <section className="py-12 xl:py-24 h-[84vh] xl:pt-28 bg-hero bg-no-repeat bg-bottom bg-cover dark:bg-none mt-10 xl:mt-0">
       <div className="container mx-auto">
         <div className="flex flex-col items-center justify-between xl:flex-row gap-x-8">
           <div className="flex  max-w-[800px] flex-col justify-center mx-auto xl:mx-0 text-center xl:text-left">
@@ -68,19 +68,23 @@ const Hero = () => {
               </Button>
             </div>
             <Socials
-              containerStyles="flex gap-x-6 mx-auto xl:mx-0"
+              containerStyles="flex gap-x-6 mx-auto xl:mx-0 mb-5 xl:mb-0"
               iconStyles="text-foreground text-[22px] hover:text-primary transition-all"
             />
           </div>
-          <div className="relative xl:flex xl:ml-0 ">
+          <div className="relative xl:flex xl:ml-0">
             <Badge
-              containerStyles={"absolute top-[24%] -left-[7rem]"}
+              containerStyles={
+                "absolute xl:top-[24%] top-[20%] -left-[1.2rem]  xl:-left-[7rem] "
+              }
               icon={<RiBriefcaseFill />}
               endCountNum={3}
               badgeText="Years of Experience"
             />
             <Badge
-              containerStyles={"absolute top-[80%] -left-[5rem]"}
+              containerStyles={
+                "absolute top-[80%] -left-[1.2rem] xl:-left-[5rem]"
+              }
               icon={<RiTodoFill />}
               endCountNum={20}
               endCountText="k"
@@ -88,16 +92,18 @@ const Hero = () => {
             />
 
             <Badge
-              containerStyles={"absolute top-[50%] -right-24"}
+              containerStyles={
+                "absolute xl:top-[50%] top-[60%] xl:-right-24 -right-[1.3rem]"
+              }
               icon={<RiTeamFill />}
               endCountNum={25}
               endCountText="k"
               badgeText="Happy Clients"
             />
-            <div className="hidden xl:block bg-hero_shape2_light dark:bg-hero_shape2_dark  w-[500px] h-[500px] bg-no-repeat absolute -top-1 -right-2"></div>
+            <div className="hidden xl:block bg-hero_shape2_light dark:bg-hero_shape2_dark  w-[500px] h-[500px] bg-no-repeat absolute -top-1 -right-2 "></div>
             <DevImg
               imgSrc="/hero/developer.png"
-              containerStyles="bg-hero_shape w-[] w-[510px]  h-[462px] bg-no-repeat relative bg-bottom] mt-[50px] sm:mt-0"
+              containerStyles="bg-hero_shape w-[350px] xl:w-[510px] h-[300px] xl:h-[462px] bg-no-repeat relative bg-bottom] mt-[50px] sm:mt-0 bg-contain"
             />
           </div>
         </div>

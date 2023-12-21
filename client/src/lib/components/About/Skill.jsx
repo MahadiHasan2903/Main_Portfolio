@@ -43,7 +43,7 @@ const Skill = () => {
                   className="bg-tertiary dark:bg-secondary/40 p-1 min-h-[50px] mx-4"
                 >
                   <CardDescription className="">
-                    <div className="flex items-center justify-between px-3 py-1">
+                    <div className="flex items-center justify-center px-3 py-1">
                       <Image
                         src={imgPath}
                         alt={name}

@@ -18,7 +18,7 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="flex flex-col p-2 mx-5">
+    <div className="flex flex-col mx-5 md:p-2 ">
       {sidebarItems?.map((item) => {
         const isSelected = selectedItem === item.id;
         const isActive = activeItem === item.id;
@@ -44,7 +44,7 @@ const Sidebar = () => {
         );
       })}
       <p
-        className="flex items-center my-4 text-[20px] px-2 py-1 rounded-lg border-b hover:bg-primary hover:text-white cursor-pointer"
+        className="flex items-center my-4 text-[20px]  rounded-lg border-none md:border-b hover:bg-primary hover:text-white cursor-pointer"
         onClick={() => {
           signOut({ callbackUrl: "/" });
         }}

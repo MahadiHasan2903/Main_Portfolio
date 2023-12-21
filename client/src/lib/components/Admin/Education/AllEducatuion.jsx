@@ -67,42 +67,41 @@ const AllEducation = () => {
   };
 
   return (
-    <div
-      className="w-[80%] 800px:w-[50%] bg-tertiary dark:bg-secondary/40 shadow h-[70vh] rounded-[4px] mt-10 
-    flex flex-col items-center text-center overflow-auto overflow-y-auto lg:overflow-x-hidden"
-    >
+    <div className="md:w-[80%] w-[full] bg-tertiary dark:bg-secondary/40 shadow h-[85vh] rounded-[4px] flex flex-col items-center text-center overflow-hidden">
       <h1 className="pt-5 md:h2 h3">All Education List</h1>
-      <div className="flex flex-col items-center justify-center w-full m-5">
-        <table className="w-[90%] m-5 border-collapse border-gray-600 dark:bg-transparent">
-          <thead>
-            <tr className="">
-              <th className="py-3 border">Institution</th>
-              <th className="py-3 border">Degree</th>
-              <th className="py-3 border">Session</th>
-              <th className="px-2 py-3 border">Edit</th>
-              <th className="px-2 py-3 border">Delete</th>
-            </tr>
-          </thead>
-          <tbody>
-            {currentEducation?.map((education) => (
-              <tr key={education._id} className="">
-                <td className="py-3 border">{education.institution}</td>
-                <td className="py-3 border">{education.degree}</td>
-                <td className="py-3 border">{education.session}</td>
-                <td className="py-3 border">
-                  <button onClick={() => handleEdit(education)}>
-                    <PenSquare size={20} className="text-primary" />
-                  </button>
-                </td>
-                <td className="py-3 border">
-                  <button onClick={() => handleDelete(education._id)}>
-                    <Trash2 size={20} className="text-primary" />
-                  </button>
-                </td>
+      <div className="flex flex-col items-start justify-center w-full m-5 lg:items-center">
+        <div className="w-[100%] h-[100%] md:h-full overflow-scroll md:overflow-hidden">
+          <table className="w-[90%] m-5 border-collapse border-gray-600 dark:bg-transparent ">
+            <thead>
+              <tr className="">
+                <th className="py-3 border">Institution</th>
+                <th className="py-3 border">Degree</th>
+                <th className="py-3 border">Session</th>
+                <th className="px-2 py-3 border">Edit</th>
+                <th className="px-2 py-3 border">Delete</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {currentEducation?.map((education) => (
+                <tr key={education._id} className="">
+                  <td className="py-3 border">{education.institution}</td>
+                  <td className="py-3 border">{education.degree}</td>
+                  <td className="py-3 border">{education.session}</td>
+                  <td className="py-3 border">
+                    <button onClick={() => handleEdit(education)}>
+                      <PenSquare size={20} className="text-primary" />
+                    </button>
+                  </td>
+                  <td className="py-3 border">
+                    <button onClick={() => handleDelete(education._id)}>
+                      <Trash2 size={20} className="text-primary" />
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
         <div className="flex items-center justify-between w-[80%] mt-4 flex-col md:flex-row">
           <div className="w-[80%] text-left mb-5 md:mb-0">
             <span>Show:</span>

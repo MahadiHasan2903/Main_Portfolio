@@ -69,40 +69,47 @@ const AllUsers = () => {
   }, []);
 
   return (
-    <div className="w-[80%] 800px:w-[50%] bg-tertiary dark:bg-secondary/40 shadow h-[85vh] rounded-[4px] flex flex-col items-center text-center overflow-y-auto lg:overflow-x-hidden">
+    <div className="md:w-[80%] w-[full] bg-tertiary dark:bg-secondary/40 shadow h-[85vh] rounded-[4px] flex flex-col items-center text-center overflow-hidden">
       <h1 className="pt-5 md:h2 h3">All Users List</h1>
-      <div className="flex flex-col items-center justify-center w-full m-5">
-        <table className="w-[90%] m-5 border-collapse border-gray-600 dark:bg-transparent overflow-x-scroll">
-          <thead>
-            <tr>
-              <th className="py-3 border">Name</th>
-              <th className="py-3 border">Email</th>
-              <th className="py-3 border">Role</th>
-              <th className="py-2 border">Edit</th>
+      <div className="flex flex-col items-start justify-center w-full m-5 lg:items-center">
+        <div className="w-[100%] h-[100%] overflow-hidden">
+          <div className="w-[100%] h-[100%] md:h-full overflow-scroll md:overflow-hidden">
+            <table className="w-[90%] m-5 border-collapse border-gray-600 dark:bg-transparent overflow-hidden">
+              <thead>
+                <tr>
+                  <th className="py-3 border">Name</th>
+                  <th className="py-3 border">Email</th>
+                  <th className="py-3 border">Role</th>
+                  <th className="py-2 border">Edit</th>
 
-              <th className="px-2 py-3 border">Delete</th>
-            </tr>
-          </thead>
-          <tbody>
-            {currentUser.map((user) => (
-              <tr key={user._id}>
-                <td className="py-3 border">{user.name}</td>
-                <td className="py-3 border">{user.email}</td>
-                <td className="py-3 border">{user.role}</td>
-                <td className="py-2 border">
-                  <button onClick={() => handleEdit(user)}>
-                    <PenSquare size={20} className="text-primary" />
-                  </button>
-                </td>
-                <td className="py-3 border">
-                  <button onClick={() => handleDelete(user._id, user.email)}>
-                    <Trash2 size={20} className="text-primary" />
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+                  <th className="px-2 py-3 border">Delete</th>
+                </tr>
+              </thead>
+              <tbody>
+                {currentUser.map((user) => (
+                  <tr key={user._id}>
+                    <td className="py-3 border">{user.name}</td>
+                    <td className="py-3 border">{user.email}</td>
+                    <td className="py-3 border">{user.role}</td>
+                    <td className="py-2 border">
+                      <button onClick={() => handleEdit(user)}>
+                        <PenSquare size={20} className="text-primary" />
+                      </button>
+                    </td>
+                    <td className="py-3 border">
+                      <button
+                        onClick={() => handleDelete(user._id, user.email)}
+                      >
+                        <Trash2 size={20} className="text-primary" />
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
         <div className="flex items-center justify-between w-[80%] mt-4">
           <div className="w-[80%] text-left">
             <span>Show:</span>

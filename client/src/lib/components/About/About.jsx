@@ -3,14 +3,13 @@
 import React, { useEffect, useState } from "react";
 import DevImg from "../Hero/DevImg";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
-import api from "../../../app/api";
 import Information from "./Information";
 import Qualification from "./Qualification";
 import Skill from "./Skill";
 
 const About = () => {
   return (
-    <section className="min-h-screen pb-12 mb-20 xl:py-24">
+    <section className="min-h-screen pb-12 mb-20 xl:py-24 xl:mt-0 mt-[300px] ">
       <div className="container mx-auto">
         <h2 className="mx-auto mb-8 text-center section-title xl:mb-16">
           About me

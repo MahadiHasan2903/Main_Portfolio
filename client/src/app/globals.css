@@ -206,7 +206,7 @@
 }
 
 .h1 {
-  @apply md:text-6xl text-[35px] xl:text-[60px] xl:leading-[80px] tracking-[-2px] font-bold;
+  @apply md:text-6xl text-[30px] xl:text-[60px] xl:leading-[80px] tracking-[-2px] font-bold;
 }
 .h2 {
   @apply text-4xl font-bold;
@@ -225,7 +225,7 @@
 }
 
 .badge {
-  @apply z-10 w-[200px] h-[68px] bg-white gap-4 flex items-center p-4 rounded-[10px] dark:backdrop-blur-[44px] gap-x-4 shadow-2xl;
+  @apply z-10 w-[150px] xl:w-[200px] h-[68px] bg-white gap-1 xl:gap-4 flex items-center p-1 xl:p-4 rounded-[10px] dark:backdrop-blur-[44px] xl:gap-x-4 shadow-2xl;
 }
 
 .section-title {
@@ -236,4 +236,15 @@
 .swiper-pagination-horizontal.swiper-pagination-bullets
   .swiper-pagination-bullet {
   @apply bg-primary;
+}
+
+::-webkit-scrollbar {
+  width: 1rem;
+}
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: transparent;
 }

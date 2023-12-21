@@ -74,52 +74,51 @@ const AllSkills = () => {
     fetchAllSkills();
   }, []);
   return (
-    <div
-      className="w-[80%] 800px:w-[50%] bg-tertiary dark:bg-secondary/40 shadow h-[90vh] rounded-[4px] 
-      flex flex-col items-center text-center overflow-y-auto lg:overflow-x-hidden "
-    >
+    <div className="md:w-[80%] w-[full] bg-tertiary dark:bg-secondary/40 shadow h-[85vh] rounded-[4px] flex flex-col items-center text-center overflow-hidden overflow-y-scroll">
       <h1 className="pt-5 md:h2 h3">All Skills List</h1>
-      <div className="flex flex-col items-center justify-center w-full m-5">
-        <table className="w-[90%] m-5 border-collapse border-gray-600 dark:bg-transparent">
-          <thead>
-            <tr>
-              <th className="py-2 border">Skill Id</th>
-              <th className="py-2 border">Skill Name</th>
-              <th className="py-2 border">Skill logo</th>
-              <th className="py-2 border">Edit</th>
-              <th className="py-2 border">Delete</th>
-            </tr>
-          </thead>
-          <tbody>
-            {currentSkills.map((skill) => (
-              <tr key={skill._id}>
-                <td className="py-2 border">{skill._id}</td>
-                <td className="py-2 border">{skill.name}</td>
-                <td className="py-2 text-center border">
-                  <div className="flex items-center justify-center">
-                    <Image
-                      src={skill.imgPath}
-                      alt={skill.name}
-                      width={40}
-                      height={40}
-                    />
-                  </div>
-                </td>
-
-                <td className="py-2 border">
-                  <button onClick={() => handleEdit(skill)}>
-                    <PenSquare size={20} className="text-primary" />
-                  </button>
-                </td>
-                <td className="py-2 border">
-                  <button onClick={() => handleDelete(skill._id)}>
-                    <Trash2 size={20} className="text-primary" />
-                  </button>
-                </td>
+      <div className="flex flex-col items-start justify-center w-full m-5 lg:items-center">
+        <div className="w-[100%] h-[70%] md:h-full overflow-scroll md:overflow-hidden">
+          <table className="w-[90%] m-5 border-collapse border-gray-600 dark:bg-transparent ">
+            <thead>
+              <tr>
+                <th className="py-2 border">Skill Id</th>
+                <th className="py-2 border">Skill Name</th>
+                <th className="py-2 border">Skill logo</th>
+                <th className="py-2 border">Edit</th>
+                <th className="py-2 border">Delete</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {currentSkills.map((skill) => (
+                <tr key={skill._id}>
+                  <td className="py-2 border">{skill._id}</td>
+                  <td className="py-2 border">{skill.name}</td>
+                  <td className="py-2 text-center border">
+                    <div className="flex items-center justify-center">
+                      <Image
+                        src={skill.imgPath}
+                        alt={skill.name}
+                        width={40}
+                        height={40}
+                      />
+                    </div>
+                  </td>
+
+                  <td className="py-2 border">
+                    <button onClick={() => handleEdit(skill)}>
+                      <PenSquare size={20} className="text-primary" />
+                    </button>
+                  </td>
+                  <td className="py-2 border">
+                    <button onClick={() => handleDelete(skill._id)}>
+                      <Trash2 size={20} className="text-primary" />
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
         <div className="flex items-center justify-between w-[80%] mt-4 flex-col md:flex-row">
           <div className="w-[80%] text-left mb-5 md:mb-0">
             <span>Show:</span>
