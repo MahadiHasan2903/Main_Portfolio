@@ -6,8 +6,25 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import Information from "./Information";
 import Qualification from "./Qualification";
 import Skill from "./Skill";
+import api from "../../../app/api";
 
 const About = () => {
+  const [personalInfo, setPersonalInfo] = useState({});
+
+  useEffect(() => {
+    const fetchInformation = async () => {
+      try {
+        const response = await api.info.getInfo();
+        setPersonalInfo(response);
+      } catch (error) {
+        console.error("Error fetching information:", error);
+      }
+    };
+
+    fetchInformation();
+  }, []);
+
+  console.log(personalInfo.primaryImage);
   return (
     <section className="min-h-screen pb-12 mb-20 xl:py-24 xl:mt-0 mt-[300px] ">
       <div className="container mx-auto">
@@ -19,6 +36,7 @@ const About = () => {
             <DevImg
               containerStyles="bg-about_shape_light dark:bg-about_shape_dark w-[505px] h-[505px] bg-no-repeat relative"
               imgSrc="/about/developer.png"
+              // imgSrc={personalInfo.primaryImage}
             />
           </div>
           <div className="flex-1">

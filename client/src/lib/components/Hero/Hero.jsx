@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { Button } from "../ui/button";
 import { Download, Send } from "lucide-react";
@@ -14,8 +14,23 @@ import {
 import DevImg from "./DevImg";
 import Badge from "./Badge";
 import Socials from "./Socials";
+import api from "../../../app/api";
 
 const Hero = () => {
+  const [personalInfo, setPersonalInfo] = useState({});
+
+  useEffect(() => {
+    const fetchInformation = async () => {
+      try {
+        const response = await api.info.getInfo();
+        setPersonalInfo(response);
+      } catch (error) {
+        console.error("Error fetching information:", error);
+      }
+    };
+
+    fetchInformation();
+  }, []);
   const downloadCV = () => {
     const cvUrl = "/CV.pdf";
     const link = document.createElement("a");
@@ -103,6 +118,7 @@ const Hero = () => {
             <div className="hidden xl:block bg-hero_shape2_light dark:bg-hero_shape2_dark  w-[500px] h-[500px] bg-no-repeat absolute -top-1 -right-2 "></div>
             <DevImg
               imgSrc="/hero/developer.png"
+              // imgSrc={personalInfo.primaryImage}
               containerStyles="bg-hero_shape w-[350px] xl:w-[510px] h-[300px] xl:h-[462px] bg-no-repeat relative bg-bottom] mt-[50px] sm:mt-0 bg-contain"
             />
           </div>
