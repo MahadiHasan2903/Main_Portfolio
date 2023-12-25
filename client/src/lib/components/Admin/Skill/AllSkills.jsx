@@ -74,14 +74,14 @@ const AllSkills = () => {
     fetchAllSkills();
   }, []);
   return (
-    <div className="md:w-[80%] w-[full] bg-tertiary dark:bg-secondary/40 shadow h-[85vh] rounded-[4px] flex flex-col items-center text-center overflow-hidden overflow-y-scroll">
+    <div className="md:w-[80%] w-[full] bg-tertiary dark:bg-secondary/40 shadow h-[85vh] rounded-[4px] flex flex-col items-center text-center overflow-y-scroll">
       <h1 className="pt-5 md:h2 h3">All Skills List</h1>
       <div className="flex flex-col items-start justify-center w-full m-5 lg:items-center">
         <div className="w-[100%] h-[70%] md:h-full overflow-scroll md:overflow-hidden">
           <table className="w-[90%] m-5 border-collapse border-gray-600 dark:bg-transparent ">
             <thead>
               <tr>
-                <th className="py-2 border">Skill Id</th>
+                {/* <th className="py-2 border">Skill Id</th> */}
                 <th className="py-2 border">Skill Name</th>
                 <th className="py-2 border">Skill logo</th>
                 <th className="py-2 border">Edit</th>
@@ -91,7 +91,7 @@ const AllSkills = () => {
             <tbody>
               {currentSkills.map((skill) => (
                 <tr key={skill._id}>
-                  <td className="py-2 border">{skill._id}</td>
+                  {/* <td className="py-2 border">{skill._id}</td> */}
                   <td className="py-2 border">{skill.name}</td>
                   <td className="py-2 text-center border">
                     <div className="flex items-center justify-center">

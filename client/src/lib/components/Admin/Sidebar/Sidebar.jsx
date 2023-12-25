@@ -1,7 +1,7 @@
 "use client";
-
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { sidebarItems } from "../../../util/data";
 import { LogOut } from "lucide-react";
 import { signOut } from "next-auth/react";
@@ -9,6 +9,16 @@ import { signOut } from "next-auth/react";
 const Sidebar = () => {
   const [selectedItem, setSelectedItem] = useState(null);
   const [activeItem, setActiveItem] = useState(null);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    // Update activeItem when pathname changes
+    const active = sidebarItems.find((item) => item.path === pathname);
+    if (active) {
+      setActiveItem(active.id);
+      setSelectedItem(active.id);
+    }
+  }, [pathname]);
 
   const handleItemHover = (itemId) => setSelectedItem(itemId);
 
@@ -18,7 +28,7 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="flex flex-col mx-5 md:p-2 ">
+    <div className="flex flex-col mx-5 md:p-2">
       {sidebarItems?.map((item) => {
         const isSelected = selectedItem === item.id;
         const isActive = activeItem === item.id;
@@ -44,7 +54,7 @@ const Sidebar = () => {
         );
       })}
       <p
-        className="flex items-center my-4 text-[20px]  rounded-lg border-none md:border-b hover:bg-primary hover:text-white cursor-pointer"
+        className="flex items-center my-4 text-[20px] rounded-lg border-none md:border-b hover:bg-primary hover:text-white cursor-pointer"
         onClick={() => {
           signOut({ callbackUrl: "/" });
         }}

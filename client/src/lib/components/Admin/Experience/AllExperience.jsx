@@ -72,7 +72,7 @@ const AllExperience = () => {
   };
 
   return (
-    <div className="md:w-[80%] w-[full] bg-tertiary dark:bg-secondary/40 shadow h-[85vh] rounded-[4px] flex flex-col items-center text-center overflow-hidden">
+    <div className="md:w-[80%] w-[full] bg-tertiary dark:bg-secondary/40 shadow h-[85vh] rounded-[4px] flex flex-col items-center text-center overflow-y-scroll">
       <h1 className="pt-5 md:h2 h3">All Experience List</h1>
       <div className="flex flex-col items-start justify-center w-full m-5 lg:items-center">
         <div className="w-[100%] h-[60%] md:h-full overflow-scroll md:overflow-hidden">

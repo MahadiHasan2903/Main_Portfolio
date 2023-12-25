@@ -5,13 +5,10 @@ import { Tabs, TabsList, TabsContent, TabsTrigger } from "../ui/tabs";
 import ProjectCard from "./ProjectCard";
 import api from "../../../app/api";
 
-import Loading from "../../util/Loading";
-
 const ProjectComponent = () => {
   const [fetchedProjects, setFetchedProjects] = useState([]);
   const [categories, setCategories] = useState([]);
   const [category, setCategory] = useState("all projects");
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchAllProjects = async () => {
@@ -29,8 +26,6 @@ const ProjectComponent = () => {
         }
       } catch (error) {
         console.error("Error occurred while fetching user data:", error);
-      } finally {
-        setLoading(false);
       }
     };
 
@@ -54,13 +49,16 @@ const ProjectComponent = () => {
         })}
       </TabsList>
       <div className="grid grid-cols-1 gap-4 text-lg xl:mt-8 lg:grid-cols-3">
-        {fetchedProjects?.map((project, index) => {
-          return (
+        {fetchedProjects
+          .filter(
+            (project) =>
+              category === "all projects" || project.category === category
+          )
+          .map((project, index) => (
             <TabsContent value={category} key={index}>
               <ProjectCard project={project} />
             </TabsContent>
-          );
-        })}
+          ))}
       </div>
     </Tabs>
   );
