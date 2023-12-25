@@ -405,8 +405,8 @@ export const sidebarItems = [
   },
   {
     id: 3,
-    title: "Create Information",
-    path: "/create-information",
+    title: "Add Information",
+    path: "/add-information",
     icon: <Library size={20} />,
   },
   {
@@ -417,8 +417,8 @@ export const sidebarItems = [
   },
   {
     id: 5,
-    title: "Create Project",
-    path: "/create-project",
+    title: "Add Project",
+    path: "/add-project",
     icon: <ListPlus size={20} />,
   },
   {
@@ -429,8 +429,8 @@ export const sidebarItems = [
   },
   {
     id: 7,
-    title: "Create Skill",
-    path: "/create-skill",
+    title: "Add Skill",
+    path: "/add-skill",
     icon: <PenLine size={20} />,
   },
   {
@@ -441,8 +441,8 @@ export const sidebarItems = [
   },
   {
     id: 9,
-    title: "Create Education",
-    path: "/create-education",
+    title: "Add Education",
+    path: "/add-education",
     icon: <GraduationCap size={20} />,
   },
   {
@@ -453,8 +453,8 @@ export const sidebarItems = [
   },
   {
     id: 11,
-    title: "Create Experience",
-    path: "/create-experience",
+    title: "Add Experience",
+    path: "/add-experience",
     icon: <PenSquare size={20} />,
   },
   {
