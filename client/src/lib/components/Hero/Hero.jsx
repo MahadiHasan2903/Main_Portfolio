@@ -90,7 +90,7 @@ const Hero = () => {
           <div className="relative xl:flex xl:ml-0">
             <Badge
               containerStyles={
-                "absolute xl:top-[24%] top-[20%] -left-[1.2rem]  xl:-left-[7rem] "
+                "absolute xl:top-[24%] top-[20%] t -left-[1.2rem]  xl:-left-[7rem] "
               }
               icon={<RiBriefcaseFill />}
               endCountNum={3}
@@ -98,7 +98,7 @@ const Hero = () => {
             />
             <Badge
               containerStyles={
-                "absolute top-[80%] -left-[1.2rem] xl:-left-[5rem]"
+                "absolute top-[83%] -left-[1rem] xl:-left-[5rem]"
               }
               icon={<RiTodoFill />}
               endCountNum={20}
@@ -108,7 +108,7 @@ const Hero = () => {
 
             <Badge
               containerStyles={
-                "absolute xl:top-[50%] top-[60%] xl:-right-24 -right-[1.3rem]"
+                "absolute xl:top-[50%] top-[65%] xl:-right-24 -right-[1rem]"
               }
               icon={<RiTeamFill />}
               endCountNum={25}
