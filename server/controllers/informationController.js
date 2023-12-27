@@ -24,6 +24,7 @@ const createInformation = async (req, res) => {
 const updateInformation = async (req, res) => {
   try {
     let existingInfo = await Information.findOne();
+    console.log(existingInfo);
     if (!existingInfo) {
       return res.status(404).json({ message: "No information found" });
     }
