@@ -34,7 +34,15 @@ const UpdateInfo = () => {
       try {
         const response = await api.info.getInfo();
         console.log(response.id);
-        setFormData(response);
+
+        const formattedDateOfBirth = response.dateOfBirth
+          ? new Date(response.dateOfBirth).toISOString().split("T")[0]
+          : "";
+
+        setFormData({
+          ...response,
+          dateOfBirth: formattedDateOfBirth,
+        });
       } catch (error) {
         console.error("Error fetching information:", error);
       }

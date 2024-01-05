@@ -51,12 +51,12 @@ const Form = () => {
 
       toast.success("Message sent successfully");
 
-      // setFormData({
-      //   name: "",
-      //   email: "",
-      //   subject: "",
-      //   message: "",
-      // });
+      setFormData({
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
+      });
     } catch (error) {
       console.error("FAILED...", error);
       toast.error("Failed to send message. Please try again later.");
