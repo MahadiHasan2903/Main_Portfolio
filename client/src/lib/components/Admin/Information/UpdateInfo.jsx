@@ -110,11 +110,7 @@ const UpdateInfo = () => {
         token
       );
 
-      if (!updateUserResponse.ok) {
-        throw new Error("Error creating user. Please try again.");
-      } else {
-        toast.success("User updated successfully!");
-      }
+      toast.success("User updated successfully!");
     } catch (error) {
       console.error("Error creating user:", error);
       toast.error(error.message);

@@ -117,8 +117,8 @@ const Hero = () => {
             />
             <div className="hidden xl:block bg-hero_shape2_light dark:bg-hero_shape2_dark  w-[500px] h-[500px] bg-no-repeat absolute -top-1 -right-2 "></div>
             <DevImg
-              imgSrc="/hero/developer.png"
-              // imgSrc={personalInfo.primaryImage}
+              imgSrc={personalInfo?.primaryImage}
+              // imgSrc={personalInfo?.secondaryImage}
               containerStyles="bg-hero_shape w-[350px] xl:w-[510px] h-[300px] xl:h-[462px] bg-no-repeat relative bg-bottom] mt-[50px] sm:mt-0 bg-contain"
             />
           </div>

@@ -15,7 +15,6 @@ import {
   Library,
   PackagePlus,
   LayoutDashboard,
-  Component,
   Code2,
 } from "lucide-react";
 
