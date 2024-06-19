@@ -11,7 +11,6 @@ const Qualification = () => {
       try {
         const response = await api.experience.getAllExperiences();
         setFetchedExperiences(response.data);
-        console.log(response.data);
       } catch (error) {
         console.error("Error occurred while fetching user data:", error);
       }
@@ -25,7 +24,6 @@ const Qualification = () => {
       try {
         const response = await api.education.getAllEducations();
         setFetchedEducations(response.data);
-        console.log(response.data);
       } catch (error) {
         console.error("Error occurred while fetching user data:", error);
       }

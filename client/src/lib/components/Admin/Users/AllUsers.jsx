@@ -55,11 +55,9 @@ const AllUsers = () => {
     const fetchAllUsers = async () => {
       try {
         const response = await api.users.getAllUsers();
-        console.log(response);
         if (response && response.users) {
           setFetchedUsers(response.users);
         }
-        console.log("Response:", fetchedUsers);
       } catch (error) {
         console.error("Error occurred while fetching user data:", error);
       }

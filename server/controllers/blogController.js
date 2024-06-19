@@ -8,7 +8,6 @@ const createBlog = async (req, res) => {
     const savedBlog = await newBlog.save();
     res.status(201).json(savedBlog);
   } catch (error) {
-    console.log(error);
     res.status(400).json({ message: error.message });
   }
 };

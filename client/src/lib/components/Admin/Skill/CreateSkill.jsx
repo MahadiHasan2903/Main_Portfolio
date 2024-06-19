@@ -50,10 +50,7 @@ const CreateSkill = () => {
         imgPath,
       };
 
-      console.log(createSkillData);
-
       const response = await api.skill.createSkill(createSkillData, token);
-      console.log("Skill created:", response);
 
       toast.success("Skill created successfully!");
       setName("");

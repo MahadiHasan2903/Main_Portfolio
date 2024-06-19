@@ -11,7 +11,6 @@ const createExperience = async (createExperienceData, token) => {
       },
       body: JSON.stringify(createExperienceData),
     });
-    console.log(response);
     return response;
   } catch (error) {
     console.error("Error occurred:", error);
@@ -51,7 +50,6 @@ const deleteExperience = async (id, token) => {
         Authorization: `Bearer ${token}`,
       },
     });
-    console.log(response);
     return response;
   } catch (error) {
     console.error("Error occurred:", error);

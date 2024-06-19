@@ -65,11 +65,9 @@ const AllProjects = () => {
     const fetchAllProjects = async () => {
       try {
         const response = await api.project.getAllProjects();
-        console.log(response);
         if (response && response.data) {
           setFetchedProjects(response.data);
         }
-        console.log("Response:", fetchedProjects);
       } catch (error) {
         console.error("Error occurred while fetching user data:", error);
       }

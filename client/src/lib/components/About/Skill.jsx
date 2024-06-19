@@ -15,11 +15,9 @@ const Skill = () => {
     const fetchAllSkills = async () => {
       try {
         const response = await api.skill.getAllSkills();
-        console.log(response);
         if (response && response.data) {
           setFetchedSkills(response.data);
         }
-        console.log("Response:", fetchedSkills);
       } catch (error) {
         console.error("Error occurred while fetching user data:", error);
       }

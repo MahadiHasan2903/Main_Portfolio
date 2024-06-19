@@ -16,7 +16,6 @@ const LoginForm = () => {
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async () => {
-    console.log("handleSubmit function started");
     try {
       const loginCredentials = {
         email,
@@ -24,21 +23,18 @@ const LoginForm = () => {
       };
       setLoading(true);
 
-      console.log("Data passing");
 
       const response = await signIn("credentials", {
         ...loginCredentials,
         redirect: false,
       });
 
-      console.log("Response:", response);
       if (response && response.ok) {
         toast.success("Login Successful");
         router.push("/dashboard");
       } else {
         const errorMessage = response?.error || "Unknown error";
         setError(errorMessage);
-        console.log("Error occurred:", errorMessage);
       }
     } catch (error) {
       console.error("An error occurred during login:", error);

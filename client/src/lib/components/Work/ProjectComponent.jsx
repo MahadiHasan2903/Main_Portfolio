@@ -14,7 +14,6 @@ const ProjectComponent = () => {
     const fetchAllProjects = async () => {
       try {
         const response = await api.project.getAllProjects();
-        console.log(response);
         if (response && response.data) {
           setFetchedProjects(response.data);
 

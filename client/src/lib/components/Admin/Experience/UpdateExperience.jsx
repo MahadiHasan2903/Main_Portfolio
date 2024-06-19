@@ -42,16 +42,12 @@ const UpdateExperience = ({ experience, onClose }) => {
         years: formData.years,
       };
 
-      console.log("Update Experience Data:", updateExperienceData);
-      console.log("Sending request...");
-
       const updateExperienceResponse = await api.experience.updateExperience(
         updateExperienceData,
         token,
         experience._id
       );
 
-      console.log("Update Experience Response:", updateExperienceResponse);
       setFormData({
         organization: "",
         designation: "",

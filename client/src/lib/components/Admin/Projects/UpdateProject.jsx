@@ -55,13 +55,10 @@ const UpdateProject = ({ project, onClose }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form Data:", formData);
 
     if (formData.image) {
       try {
-        console.log("Uploading image to Cloudinary...");
         const uploadedImage = await uploadImageOnCloudinary(formData.image);
-        console.log("Uploaded Image URL:", uploadedImage.url);
 
         const updateProjectData = {
           name: formData.name,
@@ -72,16 +69,12 @@ const UpdateProject = ({ project, onClose }) => {
           image: uploadedImage.url,
         };
 
-        console.log("Update Project Data:", updateProjectData);
-        console.log("Sending request...");
-
         const updateProjectResponse = await api.project.updateProject(
           updateProjectData,
           token,
           project._id
         );
 
-        console.log("Update Project Response:", updateProjectResponse);
         setFormData({
           name: "",
           technologies: "",
@@ -96,7 +89,7 @@ const UpdateProject = ({ project, onClose }) => {
         toast.error("Failed to update project. Please try again.");
       }
     } else {
-      console.log("No selected image found.");
+      toast.error("No selected image found.");
     }
   };
 

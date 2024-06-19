@@ -30,7 +30,6 @@ const AllEducation = () => {
       try {
         const response = await api.education.getAllEducations();
         setFetchedEducations(response.data);
-        console.log(response.data);
       } catch (error) {
         console.error("Error occurred while fetching user data:", error);
       }

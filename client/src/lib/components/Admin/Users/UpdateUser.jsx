@@ -44,7 +44,6 @@ const UpdateUser = ({ user, onClose }) => {
       };
 
       const response = await api.users.updateUser(user._id, updatedUser, token);
-      console.log(response);
 
       toast.success("User profile updated successfully");
     } catch (error) {

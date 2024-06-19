@@ -11,7 +11,6 @@ const createEducation = async (createEducationData, token) => {
       },
       body: JSON.stringify(createEducationData),
     });
-    console.log(response);
     return response;
   } catch (error) {
     console.error("Error occurred:", error);
@@ -51,7 +50,6 @@ const deleteEducation = async (id, token) => {
         Authorization: `Bearer ${token}`,
       },
     });
-    console.log(response);
     return response;
   } catch (error) {
     console.error("Error occurred:", error);

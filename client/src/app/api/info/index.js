@@ -11,7 +11,7 @@ const createInfo = async (createInformation, token) => {
       },
       body: JSON.stringify(createInformation),
     });
-    console.log(response);
+    response;
     return response;
   } catch (error) {
     console.error("Error occurred:", error);
@@ -28,7 +28,6 @@ const updateInfo = async (updateInformation, token) => {
       },
       body: JSON.stringify(updateInformation),
     });
-    console.log(response);
     return response;
   } catch (error) {
     console.error("Error occurred:", error);
@@ -66,9 +65,6 @@ const getInfo = async () => {
       languages: response.information.languages.join(", "),
     };
 
-    console.log(fetchedInformation);
-
-    console.log(fetchedInformation);
     return fetchedInformation;
   } catch (error) {
     console.error("Error occurred:", error);

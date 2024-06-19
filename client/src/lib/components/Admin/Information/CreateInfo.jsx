@@ -59,13 +59,11 @@ const CreateInfo = () => {
 
       // Upload primary image to Cloudinary
       const primaryImage = await uploadImageOnCloudinary(formData.primaryImage);
-      console.log("Primary Image URL:", primaryImage);
 
       // Upload secondary image to Cloudinary
       const secondaryImage = await uploadImageOnCloudinary(
         formData.secondaryImage
       );
-      console.log("Secondary Image URL:", secondaryImage);
 
       // Prepare information for user creation
       const createInformation = {

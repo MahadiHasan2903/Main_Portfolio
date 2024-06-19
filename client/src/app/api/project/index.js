@@ -11,7 +11,6 @@ const createProject = async (createProjectData, token) => {
       },
       body: JSON.stringify(createProjectData),
     });
-    console.log(response);
     return response;
   } catch (error) {
     console.error("Error occurred:", error);
@@ -51,7 +50,6 @@ const deleteProject = async (id, token) => {
         Authorization: `Bearer ${token}`,
       },
     });
-    console.log(response);
     return response;
   } catch (error) {
     console.error("Error occurred:", error);

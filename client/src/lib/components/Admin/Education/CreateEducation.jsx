@@ -35,7 +35,6 @@ const CreateEducation = () => {
         createEducationData,
         token
       );
-      console.log("Education created:", response);
 
       setFormData({
         institution: "",

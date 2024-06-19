@@ -42,16 +42,12 @@ const UpdateEducation = ({ education, onClose }) => {
         session: formData.session,
       };
 
-      console.log("Update Education Data:", updateEducationData);
-      console.log("Sending request...");
-
       const updateEducationResponse = await api.education.updateEducation(
         updateEducationData,
         token,
         education._id
       );
 
-      console.log("Update Education Response:", updateEducationResponse);
       setFormData({
         institution: "",
         degree: "",

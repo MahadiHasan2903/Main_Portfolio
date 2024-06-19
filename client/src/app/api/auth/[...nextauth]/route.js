@@ -21,23 +21,18 @@ const handler = NextAuth({
       },
       async authorize(credentials, req) {
         try {
-          console.log("Credentials received:", credentials);
-
           const loginData = {
             email: credentials?.email,
             password: credentials?.password,
           };
-          console.log("Login data:", loginData);
 
           const response = await api.authentication.loginResponse(loginData);
-          console.log("API Response:", response);
           const user = response;
 
           if (!response || response.success !== true) {
             console.error("Unsuccessful login:", response?.message);
             throw new Error(response?.message || "Unsuccessful login");
           } else {
-            console.log("Successful login:", response.user);
             return user;
           }
         } catch (error) {
@@ -56,9 +51,7 @@ const handler = NextAuth({
       return { ...token, ...user };
     },
     async session({ session, token, user }) {
-      console.log("Token:", token);
       session = token;
-      console.log("Session:", session);
       return session;
     },
   },

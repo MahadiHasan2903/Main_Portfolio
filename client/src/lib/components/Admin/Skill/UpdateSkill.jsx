@@ -56,14 +56,11 @@ const UpdateSkill = ({ skill, onClose }) => {
         imgPath,
       };
 
-      console.log(updateSkillData);
-
       const response = await api.skill.updateSkill(
         updateSkillData,
         token,
         skill._id
       );
-      console.log("Skill updated:", response);
 
       toast.success("Skill updated successfully!");
       setName("");

@@ -35,7 +35,6 @@ const CreateExperience = () => {
         createExperienceData,
         token
       );
-      console.log("Experience created:", response);
 
       setFormData({
         organization: "",

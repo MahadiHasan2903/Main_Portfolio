@@ -38,7 +38,6 @@ const registrationController = async (req, res) => {
       user: userWithoutPassword,
     });
   } catch (error) {
-    console.log(error);
     res.status(500).json({
       success: false,
       message: "Registration failed",
@@ -81,7 +80,6 @@ const loginController = async (req, res) => {
       token,
     });
   } catch (error) {
-    console.log(error);
     res.status(500).json({
       success: false,
       message: "Login failed",
@@ -99,7 +97,6 @@ const getAllUsersController = async (req, res) => {
       users,
     });
   } catch (error) {
-    console.log(error);
     res.status(500).json({
       success: false,
       message: "Failed to retrieve users",
@@ -123,7 +120,6 @@ const getSingleUserController = async (req, res) => {
       user,
     });
   } catch (error) {
-    console.log(error);
     res.status(500).json({
       success: false,
       message: "Failed to retrieve the user",
@@ -148,7 +144,6 @@ const deleteUserController = async (req, res) => {
       deletedUser,
     });
   } catch (error) {
-    console.log(error);
     res.status(500).json({
       success: false,
       message: "Failed to delete the user",
@@ -167,8 +162,6 @@ const updateUserController = async (req, res) => {
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
-
-    console.log(user);
 
     if (email && email !== user.email) {
       const existingEmail = await User.findOne({ email });
@@ -200,7 +193,6 @@ const updateUserController = async (req, res) => {
       user: userWithoutPassword,
     });
   } catch (error) {
-    console.log(error);
     res.status(500).json({
       success: false,
       message: "Failed to update the user",

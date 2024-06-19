@@ -25,7 +25,6 @@ const deleteUser = async (id, token) => {
         Authorization: `Bearer ${token}`,
       },
     });
-    console.log(response);
     return response;
   } catch (error) {
     console.error("Error occurred:", error);
@@ -43,7 +42,6 @@ const updateUser = async (id, updatedData, token) => {
       },
       body: JSON.stringify(updatedData),
     });
-    console.log(response);
     return response;
   } catch (error) {
     console.error("Error occurred:", error);

@@ -42,13 +42,10 @@ const CreateProjet = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form Data:", formData);
 
     if (formData.image) {
       try {
-        console.log("Uploading image to Cloudinary...");
         const uploadedImage = await uploadImageOnCloudinary(formData.image);
-        console.log("Uploaded Image URL:", uploadedImage.url);
 
         const createProjectData = {
           name: formData.name,
@@ -59,15 +56,11 @@ const CreateProjet = () => {
           image: uploadedImage.url,
         };
 
-        console.log("Create Project Data:", createProjectData);
-        console.log("Sending request...");
-
         const createProjectResponse = await api.project.createProject(
           createProjectData,
           token
         );
 
-        console.log("Create Project Response:", createProjectResponse);
         setFormData({
           name: "",
           technologies: "",
@@ -82,7 +75,7 @@ const CreateProjet = () => {
         toast.error("Failed to create project. Please try again.");
       }
     } else {
-      console.log("No selected image found.");
+      toast.error("No selected image found.");
     }
   };
 

@@ -24,7 +24,6 @@ const About = () => {
     fetchInformation();
   }, []);
 
-  console.log(personalInfo.primaryImage);
   return (
     <section className="min-h-screen pb-12 mb-20 xl:py-24 xl:mt-0 mt-[300px] ">
       <div className="container mx-auto">

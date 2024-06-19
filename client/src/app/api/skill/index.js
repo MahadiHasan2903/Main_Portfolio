@@ -11,7 +11,6 @@ const createSkill = async (createSkillData, token) => {
       },
       body: JSON.stringify(createSkillData),
     });
-    console.log(response);
     return response;
   } catch (error) {
     console.error("Error occurred:", error);
@@ -51,7 +50,6 @@ const deleteSkill = async (id, token) => {
         Authorization: `Bearer ${token}`,
       },
     });
-    console.log(response);
     return response;
   } catch (error) {
     console.error("Error occurred:", error);
